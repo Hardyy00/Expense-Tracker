@@ -15,10 +15,6 @@ import { IoIosWater } from "react-icons/io";
 import { FaMobileAlt } from "react-icons/fa";
 import { FaCar } from "react-icons/fa";
 import { FaShoppingBag } from "react-icons/fa";
-import { BiSolidCameraMovie } from "react-icons/bi";
-import { IoFastFoodOutline } from "react-icons/io5";
-import { LuSofa } from "react-icons/lu";
-import { GiCommercialAirplane } from "react-icons/gi";
 
 const ariaLabel = { "aria-label": "description" };
 
@@ -41,10 +37,7 @@ const iconsMap = {
   "Mobile Recharge": <FaMobileAlt />,
   "Car Petrol": <FaCar />,
   Shopping: <FaShoppingBag />,
-  Movie: <BiSolidCameraMovie />,
-  Food: <IoFastFoodOutline />,
-  Furniture: <LuSofa />,
-  Travel: <GiCommercialAirplane />,
+  Movie: "",
 };
 
 const MainContent = () => {
@@ -124,9 +117,8 @@ const MainContent = () => {
                 />
                 <Input
                   placeholder="Amount"
-                  type="number"
                   style={{ color: "white", borderBottom: "1px solid white" }}
-                  value={form.amount === 0 ? "" : form.amount}
+                  value={form.amount}
                   onChange={(event) => {
                     setForm((pre) => {
                       return { ...pre, amount: +event.target.value };

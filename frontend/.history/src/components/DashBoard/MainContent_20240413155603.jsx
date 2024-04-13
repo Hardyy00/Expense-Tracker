@@ -18,7 +18,6 @@ import { FaShoppingBag } from "react-icons/fa";
 import { BiSolidCameraMovie } from "react-icons/bi";
 import { IoFastFoodOutline } from "react-icons/io5";
 import { LuSofa } from "react-icons/lu";
-import { GiCommercialAirplane } from "react-icons/gi";
 
 const ariaLabel = { "aria-label": "description" };
 
@@ -44,7 +43,7 @@ const iconsMap = {
   Movie: <BiSolidCameraMovie />,
   Food: <IoFastFoodOutline />,
   Furniture: <LuSofa />,
-  Travel: <GiCommercialAirplane />,
+  Travel : 
 };
 
 const MainContent = () => {
@@ -124,9 +123,8 @@ const MainContent = () => {
                 />
                 <Input
                   placeholder="Amount"
-                  type="number"
                   style={{ color: "white", borderBottom: "1px solid white" }}
-                  value={form.amount === 0 ? "" : form.amount}
+                  value={form.amount}
                   onChange={(event) => {
                     setForm((pre) => {
                       return { ...pre, amount: +event.target.value };
