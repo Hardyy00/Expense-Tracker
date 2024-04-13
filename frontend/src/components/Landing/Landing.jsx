@@ -10,7 +10,7 @@ const Landing = () => {
   };
 
   const handleGetStartedClick = () => {
-    navigate("/");
+    navigate("/register");
   };
 
   return (
@@ -63,7 +63,9 @@ const Landing = () => {
             <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded-full">
               Login
             </button>
-            <button className="bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded-full">
+            <button 
+            onClick={handleGetStartedClick}
+            className="bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded-full">
               Signup
             </button>
           </div>
