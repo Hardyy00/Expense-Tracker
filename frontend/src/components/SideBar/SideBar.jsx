@@ -1,11 +1,19 @@
 import { NavLink } from "react-router-dom";
 import image from "../../assets/img.png";
+import { useNavigate } from "react-router-dom";
 
 const links = [
-  { path: "/", name: "DashBoard" },
-  { path: "/visualization", name: "Visualization" },
+  { path: "/dashboard", name: "DashBoard" },
+  { path: "/dashboard/visualization", name: "Visualization" },
 ];
+
+
 const SideBar = () => {
+  let navigate = useNavigate();
+  const handleGetStartedClick = () => {
+    navigate("/");
+  };
+
   return (
     <div className="bg-[#03071e] w-full h-[100vh] px-4 py-8 flex flex-col items-center justify-between">
       <div className="flex gap-4">
@@ -37,7 +45,7 @@ const SideBar = () => {
       </div>
 
       <div>
-        <button>Logout</button>
+        <button onClick={handleGetStartedClick} >Logout</button>
       </div>
     </div>
   );

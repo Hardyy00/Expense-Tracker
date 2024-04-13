@@ -12,7 +12,7 @@ const configCloudinary = () => {
     api_key: process.env.API_KEY,
     api_secret: process.env.API_SECRET,
   });
-  console.log("cloud to config ho gya");
+  console.log("Cloudinary Configured");
 };
 
 // Function to handle file upload to Cloudinary

@@ -17,7 +17,7 @@ const Register = () => {
     profession: "",
     email: "",
     phone: "",
-    annualIncome:""
+    annualIncome: "",
   });
 
   const handleChange = (e) => {
@@ -68,20 +68,21 @@ const Register = () => {
   };
 
   return (
-    <div className="login-wrapper w-full h-screen flex bg-gradient-to-r from-pink-800 to-white">
-      <div className="container sm:w-[50%] h-full flex flex-col justify-center z-20 w-0 overflow-y-scroll">
-        <h1 className="sm:text-4xl text-2xl font-bold text-center my-8 bg-gradient-to-r from-white-500 to-pink-800 text-transparent bg-clip-text sm:mt-[15rem]">
+    <div className="login-wrapper w-full h-screen flex bg-black ">
+      
+      <div className="container sm:w-[100%] h-full flex flex-col justify-center items-center z-20 w-0 overflow-y-scroll">
+        <h1 className="sm:text-4xl text-2xl font-bold text-center my-8 text-white bg-clip-text sm:mt-[15rem]">
           Register
         </h1>
         <form
           onSubmit={handleSubmit}
-          className="w-max mx-auto p-12 sm:text-2xl text-base"
+          className="mx-auto p-8 sm:text-lg text-base bg-white rounded-md shadow-lg"
           encType="multipart/form-data" // Set enctype for file upload
         >
-          <div className="mb-8 flex">
+          <div className="mb-4">
             <label
               htmlFor="name"
-              className="block mb-1 font-thin text-slate-200"
+              className="block mb-1 font-thin text-black-bold"
             >
               Name*
             </label>
@@ -91,14 +92,14 @@ const Register = () => {
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className="w-full px-3 py-2 border-pink-200 bg-transparent border-b-2 text-grey-600 outline-none"
+              className="w-full px-3 py-2 border border-gray-300 bg-black-100 text-gray-800 rounded-md outline-none"
               required
             />
           </div>
-          <div className="mb-8 flex">
+          <div className="mb-4">
             <label
               htmlFor="password"
-              className="block mb-1 font-thin text-slate-200"
+              className="block mb-1 font-thin text-gray-800"
             >
               Password*
             </label>
@@ -108,15 +109,12 @@ const Register = () => {
               name="password"
               value={formData.password}
               onChange={handleChange}
-              className="w-full px-3 py-2 border-pink-200 bg-transparent border-b-2 text-grey-600 outline-none"
+              className="w-full px-3 py-2 border border-gray-300 bg-gray-100 text-gray-800 rounded-md outline-none"
               required
             />
           </div>
-          <div className="mb-8 flex">
-            <label
-              htmlFor="age"
-              className="block mb-1 font-thin text-slate-200"
-            >
+          <div className="mb-4">
+            <label htmlFor="age" className="block mb-1 font-thin text-gray-800">
               Age*
             </label>
             <input
@@ -125,14 +123,14 @@ const Register = () => {
               name="age"
               value={formData.age}
               onChange={handleChange}
-              className="w-full px-3 py-2 border-pink-200 bg-transparent border-b-2 text-grey-600 outline-none"
+              className="w-full px-3 py-2 border border-gray-300 bg-gray-100 text-gray-800 rounded-md outline-none"
               required
             />
           </div>
-          <div className="mb-8 flex">
+          <div className="mb-4">
             <label
               htmlFor="gender"
-              className="block mb-1 font-thin text-slate-200"
+              className="block mb-1 font-thin text-gray-800"
             >
               Gender*
             </label>
@@ -141,7 +139,7 @@ const Register = () => {
               name="gender"
               value={formData.gender}
               onChange={handleChange}
-              className="w-full px-3 py-2 border-pink-200 bg-transparent border-b- text-grey-600 outline-none"
+              className="w-full px-3 py-2 border border-gray-300 bg-gray-100 text-gray-800 rounded-md outline-none"
               required
             >
               <option value="">Select Gender</option>
@@ -150,10 +148,10 @@ const Register = () => {
               <option value="Other">Other</option>
             </select>
           </div>
-          <div className="mb-8 flex">
+          <div className="mb-4">
             <label
               htmlFor="profession"
-              className="block mb-1 font-thin text-slate-200"
+              className="block mb-1 font-thin text-gray-800"
             >
               Profession*
             </label>
@@ -163,14 +161,14 @@ const Register = () => {
               name="profession"
               value={formData.profession}
               onChange={handleChange}
-              className="sm:w-full px-3 py-2 border-pink-200 bg-transparent border-b-2 text-grey-600 outline-none"
+              className="w-full px-3 py-2 border border-gray-300 bg-gray-100 text-gray-800 rounded-md outline-none"
               required
             />
           </div>
-          <div className="mb-8 flex">
+          <div className="mb-4">
             <label
               htmlFor="annualIncome"
-              className="block mb-1 font-thin text-slate-200"
+              className="block mb-1 font-thin text-gray-800"
             >
               Annual Income*
             </label>
@@ -180,30 +178,29 @@ const Register = () => {
               name="annualIncome"
               value={formData.annualIncome}
               onChange={handleChange}
-              className="sm:w-full px-3 py-2 border-pink-200 bg-transparent border-b-2 text-grey-600 outline-none"
+              className="w-full px-3 py-2 border border-gray-300 bg-gray-100 text-gray-800 rounded-md outline-none"
               required
             />
           </div>
-          <div className="mb-8 flex">
+          <div className="mb-4">
             <label
               htmlFor="profilePhoto"
-              className="block mb-1 font-thin text-slate-200"
+              className="block mb-1 font-thin text-gray-800"
             >
               Profile Photo
             </label>
             <input
-              type="file" // Set input type to file for profile photo upload
+              type="file"
               id="profilePhoto"
               name="profilePhoto"
-              onChange={handleChangeImage} // Bind handleChangeImage for file input
-              className="w-full px-3 py-2 border-pink-200 bg-transparent border-b-2 text-grey-600 outline-none"
+              onChange={handleChangeImage}
+              className="w-full px-3 py-2 border border-gray-300 bg-gray-100 text-gray-800 rounded-md outline-none"
             />
           </div>
-
-          <div className="mb-8 flex">
+          <div className="mb-4">
             <label
               htmlFor="email"
-              className="block mb-1 font-thin text-slate-200"
+              className="block mb-1 font-thin text-gray-800"
             >
               Email*
             </label>
@@ -213,14 +210,14 @@ const Register = () => {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full px-3 py-2 border-pink-200 bg-transparent border-b-2 text-grey-600 outline-none"
+              className="w-full px-3 py-2 border border-gray-300 bg-gray-100 text-gray-800 rounded-md outline-none"
               required
             />
           </div>
-          <div className="mb-8 flex">
+          <div className="mb-4">
             <label
               htmlFor="phone"
-              className="block mb-1 font-thin text-slate-200"
+              className="block mb-1 font-thin text-gray-800"
             >
               Phone
             </label>
@@ -230,29 +227,17 @@ const Register = () => {
               name="phone"
               value={formData.phone}
               onChange={handleChange}
-              className="w-full px-3 py-2 border-pink-200 bg-transparent border-b-2 text-grey-600 outline-none"
+              className="w-full px-3 py-2 border border-gray-300 bg-gray-100 text-black-800 rounded-md outline-none"
             />
           </div>
 
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
-          >
-            Register
+            className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 mt-4"
+          >Register
           </button>
         </form>
       </div>
-      <Link
-        to="/"
-        className="flex ml-[57%] absolute mt-[4rem] text-[1.4rem] text-white"
-      >
-        <IoChevronBackCircle className="text-[5rem] z-20" />
-      </Link>
-      <img
-        src="https://media.licdn.com/dms/image/D5612AQGplp7JKG6Iiw/article-cover_image-shrink_720_1280/0/1673950361361?e=2147483647&v=beta&t=NxzErCoXqQ-xwkHJZZkKGKYNA21hJh3oNMUJzNKQr9M"
-        alt=""
-        className="sm:w-[52%]  w-full rounded-l-[30%] z-10 w"
-      />
     </div>
   );
 };
