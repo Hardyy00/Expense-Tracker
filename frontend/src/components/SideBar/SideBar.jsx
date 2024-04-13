@@ -50,7 +50,7 @@ const SideBar = () => {
       <div className="flex gap-4">
         <div className="w-[3rem] h-[3rem] bg-white rounded-full">
           <img
-            src={image}
+            src={userDetails&&userDetails.profilePhoto}
             alt=""
             className="w-full h-full object-cover rounded-full"
           />
