@@ -9,7 +9,8 @@ const connectDB = require("./config/connectDb");
 const app = express();
 app.use(cors());
 dotenv.config();
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(cookieParser());
 configCloudinary();
 
