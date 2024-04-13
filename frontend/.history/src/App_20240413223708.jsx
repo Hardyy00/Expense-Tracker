@@ -13,7 +13,7 @@ function App() {
       children: [
         { index: true, element: <DashBoard /> },
         { path: "visualization", element: <Visualization /> },
-        { path: "notifier", element: <Notifier /> },
+        { path: "friends", element: <Notifier /> },
       ],
     },
   ]);

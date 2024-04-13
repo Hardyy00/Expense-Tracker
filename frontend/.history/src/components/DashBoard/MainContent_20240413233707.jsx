@@ -58,10 +58,8 @@ const MainContent = () => {
   const [subCategory, setSubCategory] = useState("");
   const [type, setType] = useState("");
 
-  const spent = 0,
-    earned = 0,
-    LoanedTo = 0,
-    loanedFrom = 0;
+
+  const 
 
   let expenses = useSelector((state) => state.expenses);
   const length = expenses.length;
@@ -115,12 +113,6 @@ const MainContent = () => {
                 title={"Loaned to Friend"}
                 className="text-yellow-400"
               />
-              <Item
-                amount={100}
-                title={"Loaned from Friend"}
-                className="text-green-400"
-              />
-
               <Item
                 amount={100}
                 title={"Loaned from Friend"}

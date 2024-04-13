@@ -120,12 +120,6 @@ const MainContent = () => {
                 title={"Loaned from Friend"}
                 className="text-green-400"
               />
-
-              <Item
-                amount={100}
-                title={"Loaned from Friend"}
-                className="text-green-400"
-              />
             </div>
           </Card>
           <Card className="p-[8rem]">

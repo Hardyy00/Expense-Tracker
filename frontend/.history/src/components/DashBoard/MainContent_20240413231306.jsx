@@ -58,11 +58,6 @@ const MainContent = () => {
   const [subCategory, setSubCategory] = useState("");
   const [type, setType] = useState("");
 
-  const spent = 0,
-    earned = 0,
-    LoanedTo = 0,
-    loanedFrom = 0;
-
   let expenses = useSelector((state) => state.expenses);
   const length = expenses.length;
 
@@ -78,12 +73,7 @@ const MainContent = () => {
       type,
     };
 
-    if (
-      type === "Loaned to Friend" ||
-      type === "Loaned from Friend" ||
-      type === "Got Back From" ||
-      type === "Gave Back To"
-    ) {
+    if (type === "Loaned to Friend" || type === "Loaned from Friend") {
       data.friendName = category;
       delete data.category;
     }
@@ -115,12 +105,6 @@ const MainContent = () => {
                 title={"Loaned to Friend"}
                 className="text-yellow-400"
               />
-              <Item
-                amount={100}
-                title={"Loaned from Friend"}
-                className="text-green-400"
-              />
-
               <Item
                 amount={100}
                 title={"Loaned from Friend"}
@@ -186,8 +170,6 @@ const MainContent = () => {
                 <MenuItem value={"Loaned from Friend"}>
                   Loaned from Friend
                 </MenuItem>
-                <MenuItem value={"Gave Back To"}>Gave Back To</MenuItem>
-                <MenuItem value={"Got Back From"}>Got Back From</MenuItem>
               </Select>
             </FormControl>
           </div>
@@ -302,9 +284,7 @@ const MainContent = () => {
               )}
 
               {(type === "Loaned to Friend" ||
-                type === "Loaned from Friend" ||
-                type === "Gave Back To" ||
-                type === "Got Back From") && (
+                type === "Loaned from Friend") && (
                 <Input
                   placeholder="Friend Name"
                   style={{
@@ -320,20 +300,14 @@ const MainContent = () => {
           </div>
         </Card>
 
-        <Card className="w-[35%] rounded-2xl">
+        <Card className="w-[35%] rounded-lg">
           <h2 className="heading">Friends</h2>
 
           <div className="flex flex-col">
-            {friends.slice(0, 3).map((item, index) => (
+            {friends.map((item, index) => (
               <Friend key={index} expense={item} />
             ))}
           </div>
-
-          {friends.length > 3 && (
-            <button className="float-right mr-6 hover:text-cyan-400 transition-all duration-300 hover:scale-110">
-              Show More
-            </button>
-          )}
         </Card>
       </div>
     </div>
@@ -369,25 +343,19 @@ const ExpenseItem = ({ expense }) => {
 
       <p
         className={`w-[5rem] text-center ${
-          (expense.type === "Spent" || expense.type === "Gave Back To") &&
-          "text-red-500"
+          expense.type === "Spent" && "text-red-500"
         } ${
           (expense.type === "Earned" ||
-            expense.type === "Loaned from Friend" ||
-            expense.type === "Got Back From") &&
+            expense.type === "Loaned from Friend") &&
           "text-green-500"
         } ${expense.type === "Loaned to Friend" && "text-yellow-500"}`}
       >
         {expense.type}
       </p>
       <p
-        className={`${
-          (expense.type === "Spent" || expense.type == "Gave Back To") &&
-          "text-red-500"
-        } ${
+        className={`${expense.type === "Spent" && "text-red-500"} ${
           (expense.type === "Earned" ||
-            expense.type === "Loaned from Friend" ||
-            expense.type === "Got Back From") &&
+            expense.type === "Loaned from Friend") &&
           "text-green-500"
         } ${
           expense.type === "Loaned to Friend" && "text-yellow-500"
@@ -402,34 +370,10 @@ const ExpenseItem = ({ expense }) => {
 const Friend = ({ expense }) => {
   // console.log(expense);
   return (
-    <div className="flex items-center justify-between p-4">
-      <h2 className="text-[1.2rem]">{expense.friendName}</h2>
-      <p
-        className={`${
-          (expense.type === "Loaned to Friend" ||
-            expense.type === "Gave Back To") &&
-          "text-red-500"
-        } ${
-          (expense.type === "Loaned from Friend" ||
-            expense.type === "Got Back From") &&
-          "text-green-500"
-        }  `}
-      >
-        {expense.type}
-      </p>
-      <p
-        className={`${
-          (expense.type === "Loaned to Friend" ||
-            expense.type === "Gave Back To") &&
-          "text-red-500"
-        } ${
-          (expense.type === "Loaned from Friend" ||
-            expense.type === "Got Back From") &&
-          "text-green-500"
-        } text-[1.2rem] `}
-      >
-        ${expense.amount}
-      </p>
+    <div className="flex">
+      <p>{expense.friendName}</p>
+      <p>{expense.type}</p>
+      <p>${expense.amount}</p>
     </div>
   );
 };

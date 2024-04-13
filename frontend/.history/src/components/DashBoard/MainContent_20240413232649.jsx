@@ -58,11 +58,6 @@ const MainContent = () => {
   const [subCategory, setSubCategory] = useState("");
   const [type, setType] = useState("");
 
-  const spent = 0,
-    earned = 0,
-    LoanedTo = 0,
-    loanedFrom = 0;
-
   let expenses = useSelector((state) => state.expenses);
   const length = expenses.length;
 
@@ -115,12 +110,6 @@ const MainContent = () => {
                 title={"Loaned to Friend"}
                 className="text-yellow-400"
               />
-              <Item
-                amount={100}
-                title={"Loaned from Friend"}
-                className="text-green-400"
-              />
-
               <Item
                 amount={100}
                 title={"Loaned from Friend"}
@@ -409,23 +398,13 @@ const Friend = ({ expense }) => {
           (expense.type === "Loaned to Friend" ||
             expense.type === "Gave Back To") &&
           "text-red-500"
-        } ${
-          (expense.type === "Loaned from Friend" ||
-            expense.type === "Got Back From") &&
-          "text-green-500"
-        }  `}
+        } ${expense.type === "Loaned from Friend" && "text-green-500"}  `}
       >
         {expense.type}
       </p>
       <p
-        className={`${
-          (expense.type === "Loaned to Friend" ||
-            expense.type === "Gave Back To") &&
-          "text-red-500"
-        } ${
-          (expense.type === "Loaned from Friend" ||
-            expense.type === "Got Back From") &&
-          "text-green-500"
+        className={`${expense.type === "Loaned to Friend" && "text-red-500"} ${
+          expense.type === "Loaned from Friend" && "text-green-500"
         } text-[1.2rem] `}
       >
         ${expense.amount}
