@@ -3,6 +3,7 @@ import "./App.css";
 import Layout from "./components/Layout/Layout";
 import DashBoard from "./components/DashBoard/DashBoard";
 import Visualization from "./components/Visualization/Visualization";
+import Register from "./components/Register/Register";
 
 function App() {
   const routes = createBrowserRouter([
@@ -13,6 +14,10 @@ function App() {
         { index: true, element: <DashBoard /> },
         { path: "visualization", element: <Visualization /> },
       ],
+    },
+    {
+      path: "/register",
+      element: < Register/>,
     },
   ]);
 
