@@ -19,12 +19,14 @@ const monthName = [
 ];
 // Login function
 async function login(req, res) {
-    const { username, password } = req.body;
+  const { username, password } = req.body;
+  // console.log("login krne pr re.body",req.body)
     
 
   try {
     // Find user by username
     const user = await User.findOne({ username });
+    // console.log("login se user=",user);
 
     // Check if user exists
     if (!user) {

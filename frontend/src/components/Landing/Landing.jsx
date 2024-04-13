@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import bgImage from "../../assets/bg-removebg-preview.png";
 
 const Landing = () => {
@@ -14,7 +14,12 @@ const Landing = () => {
   };
 
   return (
-    <div className="landing-page  bg-repeat bg-black h-[100vh] relative">
+    <div
+      className="landing-page  bg-repeat bg-black h-[100vh] relative"
+      style={{
+        backgroundImage: `url("https://www.streebo.com/wp-content/themes/streebo/images/LangingPage/Expense-Management-Cloud-DXA/Expense-Management-Cloud-DXA-banner.jpg")`,
+      backgroundSize:'cover' }}
+    >
       <header className="py-4 px-6 bg-white shadow-md flex justify-between items-center">
         <h1 className="text-xl font-semibold">Expense Tracker</h1>
         <div className="md:hidden">
@@ -61,11 +66,12 @@ const Landing = () => {
           </ul>
           <div className="flex items-center space-x-4">
             <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded-full">
-              Login
+              <Link to="/login">Login</Link>
             </button>
-            <button 
-            onClick={handleGetStartedClick}
-            className="bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded-full">
+            <button
+              onClick={handleGetStartedClick}
+              className="bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded-full"
+            >
               Signup
             </button>
           </div>
@@ -94,16 +100,15 @@ const Landing = () => {
         ></div>
       </section>
 
-      
       <footer className="text-white absolute bottom-10 w-full">
-  <div className="container mx-auto px-20">
-    <div className="flex justify-center items-center">
-      <p className="text-sm">
-        &copy; 2024 Expense Tracker. All rights reserved.
-      </p>
-    </div>
-  </div>
-</footer>
+        <div className="container mx-auto px-20">
+          <div className="flex justify-center items-center">
+            <p className="text-sm">
+              &copy; 2024 Expense Tracker. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
