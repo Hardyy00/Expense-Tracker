@@ -9,7 +9,7 @@ const Layout = () => {
           <SideBar />
         </div>
 
-        <div className="w-[85%] ">
+        <div className="w-[85%] overflow-scroll">
           <Outlet />
         </div>
       </div>

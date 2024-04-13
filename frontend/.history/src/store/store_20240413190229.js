@@ -5,7 +5,10 @@ const userSlice = createSlice({
   initialState: { expenses: [] },
   reducers: {
     addExpense(state, action) {
+      console.log("here");
       state.expenses = [action.payload, ...state.expenses];
+
+      console.log(state.expenses);
     },
   },
 });

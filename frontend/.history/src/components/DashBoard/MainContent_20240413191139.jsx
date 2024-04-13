@@ -20,7 +20,7 @@ import { IoFastFoodOutline } from "react-icons/io5";
 import { SiTemporal } from "react-icons/si";
 import { LuSofa } from "react-icons/lu";
 import { GiCommercialAirplane } from "react-icons/gi";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { userActions } from "../../store/store";
 
 const ariaLabel = { "aria-label": "description" };
@@ -38,17 +38,17 @@ const map = {
 };
 
 const iconsMap = {
-  Rent: <FaHouseChimney className="w-full h-full" />,
-  "Electric Bill": <MdElectricBolt className="w-full h-full" />,
-  "Water Bill": <IoIosWater className="w-full h-full" />,
-  "Mobile Recharge": <FaMobileAlt className="w-full h-full" />,
-  "Car Petrol": <FaCar className="w-full h-full" />,
-  Shopping: <FaShoppingBag className="w-full h-full" />,
-  Movie: <BiSolidCameraMovie className="w-full h-full" />,
-  Food: <IoFastFoodOutline className="w-full h-full" />,
-  Furniture: <LuSofa className="w-full h-full" />,
-  Travel: <GiCommercialAirplane className="w-full h-full" />,
-  Default: <SiTemporal className="w-full h-full" />,
+  Rent: <FaHouseChimney />,
+  "Electric Bill": <MdElectricBolt />,
+  "Water Bill": <IoIosWater />,
+  "Mobile Recharge": <FaMobileAlt />,
+  "Car Petrol": <FaCar />,
+  Shopping: <FaShoppingBag />,
+  Movie: <BiSolidCameraMovie />,
+  Food: <IoFastFoodOutline />,
+  Furniture: <LuSofa />,
+  Travel: <GiCommercialAirplane />,
+  Default: <SiTemporal />,
 };
 
 const MainContent = () => {
@@ -56,29 +56,23 @@ const MainContent = () => {
   const [category, setCategory] = useState("");
   const [form, setForm] = useState({ title: "", amount: 0 });
   const [subCategory, setSubCategory] = useState("");
-  const [type, setType] = useState("");
-
-  let expenses = useSelector((state) => state.expenses);
-  expenses = expenses.slice(0, 8);
-
-  console.log(expenses);
+  const[ type, setType] = useState('');
 
   const submitHandler = (e) => {
     e.preventDefault();
 
-    const data = { ...form, category, subCategory, type };
+    const data = { ...form, category, subCategory, type :  };
 
     setForm({ title: "", amount: 0 });
     setCategory("");
     setSubCategory("");
-    setType("");
 
     dispatch(userActions.addExpense(data));
   };
   return (
-    <div className="w-full h-full mt-8 flex flex-col gap-[4rem] ">
+    <div className="w-full h-full mt-8 flex flex-col gap-[4rem]">
       <div className="flex justify-between">
-        <div className="flex flex-col gap-[2rem] w-[55%]">
+        <div className="flex flex-col gap-[2rem] w-[50%]">
           <Card className="flex flex-col gap-[1.3rem]">
             <h2 className="heading">Overview</h2>
 
@@ -102,20 +96,16 @@ const MainContent = () => {
               />
             </div>
           </Card>
-          <Card className="p-[8rem]">
+          <Card>
             <h2 className="heading">Expense Statistics</h2>
           </Card>
         </div>
 
         {/* all  expenses will be shown here */}
-        <Card className="w-[40%]">
+        <Card className="w-[45%]">
           <h2 className="heading">Activities</h2>
 
-          <div className="p-4">
-            {expenses.map((item, index) => (
-              <ExpenseItem expense={item} key={index} />
-            ))}
-          </div>
+          <div></div>
 
           <p>Show More</p>
         </Card>
@@ -123,35 +113,7 @@ const MainContent = () => {
 
       <div className="flex w-full justify-between">
         <Card className="w-[55%] flex flex-col gap-4">
-          <div className="flex gap-4 w-full items-center justify-between">
-            {" "}
-            <h2 className="heading">Add Expense</h2>
-            <FormControl className="w-[40%]">
-              <InputLabel
-                id="demo-simple-select-label"
-                style={{ color: "white" }}
-              >
-                Type
-              </InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={type}
-                label="Type"
-                onChange={(event) => {
-                  setType(event.target.value);
-                }}
-                style={{ color: "moccasin" }}
-              >
-                <MenuItem value={"Earned"}>Earned</MenuItem>
-                <MenuItem value={"Spent"}>Spent</MenuItem>
-                <MenuItem value={"Loaned to Friend"}>Loaned to Friend</MenuItem>
-                <MenuItem value={"Loaned from friend"}>
-                  Loaned from Friend
-                </MenuItem>
-              </Select>
-            </FormControl>
-          </div>
+          <h2 className="heading">Add Expense</h2>
 
           <div className="flex gap-4">
             <div className="w-[40%]">
@@ -188,37 +150,64 @@ const MainContent = () => {
                   Submit
                 </Button>
               </form>
+
+              <FormControl fullWidth>
+                <InputLabel
+                  id="demo-simple-select-label"
+                  style={{ color: "white" }}
+                >
+                  Type
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={category}
+                  label="Category"
+                  onChange={(event) => {
+                    setCategory(event.target.value);
+                  }}
+                  style={{ color: "aqua" }}
+                >
+                  <MenuItem value={"One Time Purchase"}>
+                    One Time Purchase
+                  </MenuItem>
+                  <MenuItem value={"Recurring Bill"}></MenuItem>
+                  <MenuItem value={"Miscellaneous Bill"}>
+                    Miscellaneous Bill
+                  </MenuItem>
+                </Select>
+              </FormControl>
+
+              
             </div>
 
             <div className="flex flex-col w-[50%] gap-4">
-              {type === "Spent" && (
-                <FormControl fullWidth>
-                  <InputLabel
-                    id="demo-simple-select-label"
-                    style={{ color: "white" }}
-                  >
-                    Category
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={category}
-                    label="Category"
-                    onChange={(event) => {
-                      setCategory(event.target.value);
-                    }}
-                    style={{ color: "aqua" }}
-                  >
-                    <MenuItem value={"One Time Purchase"}>
-                      One Time Purchase
-                    </MenuItem>
-                    <MenuItem value={"Recurring Bill"}>Recurring Bill</MenuItem>
-                    <MenuItem value={"Miscellaneous Bill"}>
-                      Miscellaneous Bill
-                    </MenuItem>
-                  </Select>
-                </FormControl>
-              )}
+              <FormControl fullWidth>
+                <InputLabel
+                  id="demo-simple-select-label"
+                  style={{ color: "white" }}
+                >
+                  Category
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={category}
+                  label="Category"
+                  onChange={(event) => {
+                    setCategory(event.target.value);
+                  }}
+                  style={{ color: "aqua" }}
+                >
+                  <MenuItem value={"One Time Purchase"}>
+                    One Time Purchase
+                  </MenuItem>
+                  <MenuItem value={"Recurring Bill"}>Recurring Bill</MenuItem>
+                  <MenuItem value={"Miscellaneous Bill"}>
+                    Miscellaneous Bill
+                  </MenuItem>
+                </Select>
+              </FormControl>
 
               {/* input for miscellaneous bill as well as recurring bill */}
 
@@ -280,28 +269,6 @@ const Item = ({ amount, title, className = "" }) => {
         ${amount}
       </h3>
       <p className="text-gray-400 text-[0.9rem]">{title}</p>
-    </div>
-  );
-};
-
-const ExpenseItem = ({ expense }) => {
-  return (
-    <div className="flex  w-full items-center justify-between">
-      <div className="border p-2 rounded-full bg-[#101935] h-[2.6rem] w-[2.6rem]">
-        {expense.type === "Spent" && iconsMap[expense.subCategory] !== undefined
-          ? iconsMap[expense.subCategory]
-          : iconsMap["Default"]}
-      </div>
-
-      <div>
-        <h2 className="opacity-85">
-          {expense.type === "Earned" ? expense.type : expense.subCategory}
-        </h2>
-        <p className="opacity-45">{expense.title}</p>
-      </div>
-
-      <p>{expense.subCategory}</p>
-      <p>{expense.amount}</p>
     </div>
   );
 };

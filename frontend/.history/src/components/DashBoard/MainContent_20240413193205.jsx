@@ -20,7 +20,7 @@ import { IoFastFoodOutline } from "react-icons/io5";
 import { SiTemporal } from "react-icons/si";
 import { LuSofa } from "react-icons/lu";
 import { GiCommercialAirplane } from "react-icons/gi";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { userActions } from "../../store/store";
 
 const ariaLabel = { "aria-label": "description" };
@@ -38,17 +38,17 @@ const map = {
 };
 
 const iconsMap = {
-  Rent: <FaHouseChimney className="w-full h-full" />,
-  "Electric Bill": <MdElectricBolt className="w-full h-full" />,
-  "Water Bill": <IoIosWater className="w-full h-full" />,
-  "Mobile Recharge": <FaMobileAlt className="w-full h-full" />,
-  "Car Petrol": <FaCar className="w-full h-full" />,
-  Shopping: <FaShoppingBag className="w-full h-full" />,
-  Movie: <BiSolidCameraMovie className="w-full h-full" />,
-  Food: <IoFastFoodOutline className="w-full h-full" />,
-  Furniture: <LuSofa className="w-full h-full" />,
-  Travel: <GiCommercialAirplane className="w-full h-full" />,
-  Default: <SiTemporal className="w-full h-full" />,
+  Rent: <FaHouseChimney />,
+  "Electric Bill": <MdElectricBolt />,
+  "Water Bill": <IoIosWater />,
+  "Mobile Recharge": <FaMobileAlt />,
+  "Car Petrol": <FaCar />,
+  Shopping: <FaShoppingBag />,
+  Movie: <BiSolidCameraMovie />,
+  Food: <IoFastFoodOutline />,
+  Furniture: <LuSofa />,
+  Travel: <GiCommercialAirplane />,
+  Default: <SiTemporal />,
 };
 
 const MainContent = () => {
@@ -57,11 +57,6 @@ const MainContent = () => {
   const [form, setForm] = useState({ title: "", amount: 0 });
   const [subCategory, setSubCategory] = useState("");
   const [type, setType] = useState("");
-
-  let expenses = useSelector((state) => state.expenses);
-  expenses = expenses.slice(0, 8);
-
-  console.log(expenses);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -76,9 +71,9 @@ const MainContent = () => {
     dispatch(userActions.addExpense(data));
   };
   return (
-    <div className="w-full h-full mt-8 flex flex-col gap-[4rem] ">
+    <div className="w-full h-full mt-8 flex flex-col gap-[4rem]">
       <div className="flex justify-between">
-        <div className="flex flex-col gap-[2rem] w-[55%]">
+        <div className="flex flex-col gap-[2rem] w-[50%]">
           <Card className="flex flex-col gap-[1.3rem]">
             <h2 className="heading">Overview</h2>
 
@@ -102,20 +97,16 @@ const MainContent = () => {
               />
             </div>
           </Card>
-          <Card className="p-[8rem]">
+          <Card>
             <h2 className="heading">Expense Statistics</h2>
           </Card>
         </div>
 
         {/* all  expenses will be shown here */}
-        <Card className="w-[40%]">
+        <Card className="w-[45%]">
           <h2 className="heading">Activities</h2>
 
-          <div className="p-4">
-            {expenses.map((item, index) => (
-              <ExpenseItem expense={item} key={index} />
-            ))}
-          </div>
+          <div></div>
 
           <p>Show More</p>
         </Card>
@@ -284,26 +275,8 @@ const Item = ({ amount, title, className = "" }) => {
   );
 };
 
-const ExpenseItem = ({ expense }) => {
-  return (
-    <div className="flex  w-full items-center justify-between">
-      <div className="border p-2 rounded-full bg-[#101935] h-[2.6rem] w-[2.6rem]">
-        {expense.type === "Spent" && iconsMap[expense.subCategory] !== undefined
-          ? iconsMap[expense.subCategory]
-          : iconsMap["Default"]}
-      </div>
-
-      <div>
-        <h2 className="opacity-85">
-          {expense.type === "Earned" ? expense.type : expense.subCategory}
-        </h2>
-        <p className="opacity-45">{expense.title}</p>
-      </div>
-
-      <p>{expense.subCategory}</p>
-      <p>{expense.amount}</p>
-    </div>
-  );
+const ExpenseItem = (props) => {
+  return <div>di</div>;
 };
 
 export default MainContent;

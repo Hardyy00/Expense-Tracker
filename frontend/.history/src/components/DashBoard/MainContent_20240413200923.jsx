@@ -59,7 +59,7 @@ const MainContent = () => {
   const [type, setType] = useState("");
 
   let expenses = useSelector((state) => state.expenses);
-  expenses = expenses.slice(0, 8);
+  expenses = expenses.slice(0, 3);
 
   console.log(expenses);
 
@@ -76,9 +76,9 @@ const MainContent = () => {
     dispatch(userActions.addExpense(data));
   };
   return (
-    <div className="w-full h-full mt-8 flex flex-col gap-[4rem] ">
+    <div className="w-full h-full mt-8 flex flex-col gap-[4rem]">
       <div className="flex justify-between">
-        <div className="flex flex-col gap-[2rem] w-[55%]">
+        <div className="flex flex-col gap-[2rem] w-[50%]">
           <Card className="flex flex-col gap-[1.3rem]">
             <h2 className="heading">Overview</h2>
 
@@ -102,16 +102,16 @@ const MainContent = () => {
               />
             </div>
           </Card>
-          <Card className="p-[8rem]">
+          <Card className="p-[4rem]">
             <h2 className="heading">Expense Statistics</h2>
           </Card>
         </div>
 
         {/* all  expenses will be shown here */}
-        <Card className="w-[40%]">
+        <Card className="w-[45%]">
           <h2 className="heading">Activities</h2>
 
-          <div className="p-4">
+          <div>
             {expenses.map((item, index) => (
               <ExpenseItem expense={item} key={index} />
             ))}
@@ -286,7 +286,7 @@ const Item = ({ amount, title, className = "" }) => {
 
 const ExpenseItem = ({ expense }) => {
   return (
-    <div className="flex  w-full items-center justify-between">
+    <div className="flex gap-4">
       <div className="border p-2 rounded-full bg-[#101935] h-[2.6rem] w-[2.6rem]">
         {expense.type === "Spent" && iconsMap[expense.subCategory] !== undefined
           ? iconsMap[expense.subCategory]
@@ -299,9 +299,6 @@ const ExpenseItem = ({ expense }) => {
         </h2>
         <p className="opacity-45">{expense.title}</p>
       </div>
-
-      <p>{expense.subCategory}</p>
-      <p>{expense.amount}</p>
     </div>
   );
 };

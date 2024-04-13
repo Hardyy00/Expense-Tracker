@@ -5,7 +5,7 @@ const Layout = () => {
   return (
     <div className="bg-[#101935] relative text-white w-full">
       <div className="flex">
-        <div className="w-[15%]">
+        <div className="w-[15%] h-[104vh]">
           <SideBar />
         </div>
 

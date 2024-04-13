@@ -59,7 +59,7 @@ const MainContent = () => {
   const [type, setType] = useState("");
 
   let expenses = useSelector((state) => state.expenses);
-  expenses = expenses.slice(0, 8);
+  expenses = expenses.slice(0, 3);
 
   console.log(expenses);
 
@@ -286,7 +286,7 @@ const Item = ({ amount, title, className = "" }) => {
 
 const ExpenseItem = ({ expense }) => {
   return (
-    <div className="flex  w-full items-center justify-between">
+    <div className="flex gap-4 w-full items-center justify-between">
       <div className="border p-2 rounded-full bg-[#101935] h-[2.6rem] w-[2.6rem]">
         {expense.type === "Spent" && iconsMap[expense.subCategory] !== undefined
           ? iconsMap[expense.subCategory]

@@ -4,7 +4,7 @@ import SideBar from "../SideBar/SideBar";
 const Layout = () => {
   return (
     <div className="bg-[#101935] relative text-white w-full">
-      <div className="flex">
+      <div className="flexl">
         <div className="w-[15%]">
           <SideBar />
         </div>

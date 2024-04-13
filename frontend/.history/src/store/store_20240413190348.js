@@ -6,6 +6,8 @@ const userSlice = createSlice({
   reducers: {
     addExpense(state, action) {
       state.expenses = [action.payload, ...state.expenses];
+
+      console.log(state.expenses);
     },
   },
 });
