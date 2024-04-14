@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import image from "../../assets/img.png";
 
 const links = [
-  { id: "l1", path: "/dashboard", name: "DashBoard" },
+  { id: "l1", path: "/", name: "DashBoard" },
   { id: "l2", path: "/visualization", name: "Visualization" },
   { id: "l3", path: "/notifier", name: "Notifier" },
 ];
