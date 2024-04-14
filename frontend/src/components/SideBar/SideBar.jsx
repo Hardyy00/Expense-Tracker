@@ -1,5 +1,4 @@
 import { NavLink, useNavigate } from "react-router-dom";
-// import image from "../../assets/img.png";
 import Cookies from "js-cookie";
 import { GrLogout } from "react-icons/gr";
 import { MdDashboard } from "react-icons/md";
@@ -7,10 +6,6 @@ import { FaHome } from "react-icons/fa";
 import { PiGraphFill } from "react-icons/pi";
 import { useEffect, useState } from "react";
 import { apiConnector } from "../../Operations/apiConnector";
-// const links = [
-//   { path: "/dashboard", name: "DashBoard" },
-//   { path: "/dashboard/visualization", name: "Visualization" },
-// ];
 
 const SideBar = () => {
   const [userDetails, setUserDetails] = useState(null); // State to store user details
@@ -36,7 +31,6 @@ const SideBar = () => {
 
   const handleLogout = () => {
     try {
-      // alert("hello");
       localStorage.removeItem("authToken");
       Cookies.remove("authToken");
       Cookies.remove("loginedUser");
@@ -115,14 +109,6 @@ const SideBar = () => {
         </NavLink>
       </div>
 
-      {/* <NavLink
-        to="/"
-        onClick={handleLogout}
-        className="sm:focus:bg-sky-700 sm:flex sm:focus:text-white sm:p-[1rem] sm:rounded-full sm:pl-[2rem] sm:items-center sm:text-blue-900 sm:bold sm:p-[10px] sm:border-rounded sm:bg-red-400 sm:text-center sm:justify-center"
-      >
-        <GrLogout className=" sm:text-blue-800" />
-        Logout
-      </NavLink> */}
     </div>
   );
 };
