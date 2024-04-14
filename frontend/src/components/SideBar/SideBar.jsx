@@ -1,7 +1,9 @@
-import { NavLink , useNavigate} from "react-router-dom";
+
+import { NavLink, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { GrLogout } from "react-icons/gr";
 import { MdDashboard } from "react-icons/md";
+import { FaHome } from "react-icons/fa";
 import { PiGraphFill } from "react-icons/pi";
 import { useEffect, useState } from "react";
 import { apiConnector } from "../../Operations/apiConnector";
@@ -40,26 +42,48 @@ const SideBar = () => {
   };
 
   return (
-    <div className="bg-[#03071e] w-full h-full px-4 py-8 flex flex-col items-center justify-between">
+    <div className="bg-[#03071e] w-full h-[100vh] px-4 py-8 flex flex-col items-center justify-start gap-[5rem]">
+
       <div className="flex gap-4">
-        <div className="w-[3rem] h-[3rem] bg-white rounded-full">
+        <div className="w-[3rem] h-[3rem] bg-white rounded-full ">
           <img
-            src={userDetails&&userDetails.profilePhoto}
+            src={userDetails && userDetails.profilePhoto}
             alt=""
             className="w-full h-full object-cover rounded-full"
           />
         </div>
         <div>
           <h2>Hey</h2>
-          <h1>{ userDetails&&(userDetails.gender=='Male')?'Mr.':'Mrs.'}{userDetails && userDetails.name}</h1>
+          <h1>
+            {userDetails && userDetails.gender == "Male" ? "Mr." : "Mrs."}
+            {userDetails && userDetails.name}
+          </h1>
         </div>
       </div>
 
-      <div className="flex flex-col gap-4">
+
+      <div className="flex flex-col gap-4 text-[1.5rem] ">
+        {" "}
+        {/* Removed extra '<' here */}
+
+    
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive
+              ? "text-[102%] flex items-center"
+              : "text-[#5d6383] flex  items-center"
+          }
+        >
+          <FaHome className="sm:mr-[1rem] sm:text-white flex text-[20px]" />
+          Home
+        </NavLink>
         <NavLink
           to="/dashboard"
           className={({ isActive }) =>
-            isActive ? "text-[102%] flex" : "text-[#5d6383] flex"
+            isActive
+              ? "text-[102%] flex  items-center"
+              : "text-[#5d6383] flex  items-center"
           }
         >
           <MdDashboard className="sm:mr-[1rem] sm:text-white flex text-[20px]" />
@@ -69,7 +93,9 @@ const SideBar = () => {
         <NavLink
           to="/dashboard/visualization"
           className={({ isActive }) =>
-            isActive ? "text-[102%] flex" : "text-[#5d6383] flex"
+            isActive
+              ? "text-[102%] flex  items-center"
+              : "text-[#5d6383] flex  items-center"
           }
         >
           <PiGraphFill className="sm:mr-[1rem] sm:text-white text-[20px]" />
@@ -77,26 +103,20 @@ const SideBar = () => {
         </NavLink>
 
         <NavLink
-          to="/dashboard/notifier"
+          to="/"
+          onClick={handleLogout}
           className={({ isActive }) =>
-            isActive ? "text-[102%] flex" : "text-[#5d6383] flex"
+            isActive
+              ? "text-[102%] flex  items-center"
+              : "text-[#5d6383] flex  items-center"
           }
         >
-          <PiGraphFill className="sm:mr-[1rem] sm:text-white text-[20px]" />
-          Notifier
-        </NavLink>      
+          <GrLogout className="sm:mr-[1rem] sm:text-white text-[20px]" />
+          Logout
+        </NavLink>
       </div>
-      <div>
-      <NavLink
-        to="/"
-        onClick={handleLogout}
-        className="sm:focus:bg-sky-700 sm:flex sm:focus:text-white  sm:rounded-full sm:pl-[2rem] sm:items-center sm:text-blue-900 sm:bold sm:p-[10px] sm:border-rounded sm:bg-red-400 sm:text-center sm:justify-center"
-      >
-        <GrLogout className=" sm:text-blue-800" />
-        Logout
-      </NavLink>
-      </div>
-    
+
+
     </div>
   );
 };

@@ -1,10 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import bgImage from "../../assets/bg-removebg-preview.png";
+import { IoIosLogIn } from "react-icons/io";
+import { BsGraphUpArrow } from "react-icons/bs";
+import Cookies from "js-cookie";
 
 const Landing = () => {
   const [menuActive, setMenuActive] = useState(false);
-  let navigate = useNavigate();
+  const [isLogined, setIsLogined] = useState(false);
+
+  useEffect(() => {
+    if (Cookies.get("authToken")) {
+      setIsLogined(true);
+    }
+  }, []);
+
+  const navigate = useNavigate();
+
   const toggleMenu = () => {
     setMenuActive(!menuActive);
   };
@@ -15,13 +27,17 @@ const Landing = () => {
 
   return (
     <div
-      className="landing-page  bg-repeat bg-black h-[100vh] relative"
+      className="landing-page bg-repeat bg-black h-screen relative"
       style={{
         backgroundImage: `url("https://www.streebo.com/wp-content/themes/streebo/images/LangingPage/Expense-Management-Cloud-DXA/Expense-Management-Cloud-DXA-banner.jpg")`,
-      backgroundSize:'cover' }}
+        backgroundSize: "cover",
+      }}
     >
-      <header className="py-4 px-6 bg-white shadow-md flex justify-between items-center">
-        <h1 className="text-xl font-semibold">Expense Tracker</h1>
+      <header className="py-4 px-6 bg-blue-50 shadow-md flex justify-between items-center">
+        <h1 className="text-xl font-semibold flex items-center justify-center gap-[1rem]">
+          <BsGraphUpArrow className="text-[2rem]" />
+          Expense Tracker
+        </h1>
         <div className="md:hidden">
           <button
             onClick={toggleMenu}
@@ -47,33 +63,58 @@ const Landing = () => {
             menuActive ? "block" : "hidden"
           }`}
         >
-          <ul className="md:flex md:space-x-4 justify-center">
+          <ul className="md:flex md:space-x-4 justify-center gap-[1rem] font-thin text-red-500">
             <li>
-              <a href="#" className="text-gray-600 hover:text-gray-900">
+              <a
+                href="#"
+                className="text-gray-600 hover:text-gray-900 text-[1.4rem]"
+              >
                 Home
               </a>
             </li>
             <li>
-              <a href="#" className="text-gray-600 hover:text-gray-900">
+              <a
+                href="#"
+                className="text-gray-600 hover:text-gray-900 text-[1.4rem]"
+              >
                 About
               </a>
             </li>
             <li>
-              <a href="#" className="text-gray-600 hover:text-gray-900">
+              <a
+                href="#"
+                className="text-gray-600 hover:text-gray-900 text-[1.4rem]"
+              >
                 Contact
               </a>
             </li>
           </ul>
           <div className="flex items-center space-x-4">
             <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded-full">
-              <Link to="/login">Login</Link>
+              {isLogined ? (
+                <Link
+                  to="/dashboard"
+                  className="flex justify-center items-center gap-[10px]"
+                >
+                  <IoIosLogIn className="text-[1.5rem]" />
+                  My Account
+                </Link>
+              ) : (
+                <Link
+                  to="/login"
+                  className="flex justify-center items-center gap-[10px]"
+                >
+                  <IoIosLogIn className="text-[1.5rem]" />
+                  Login
+                </Link>
+              )}
             </button>
-            <button
+            {/* <button
               onClick={handleGetStartedClick}
               className="bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded-full"
             >
               Signup
-            </button>
+            </button> */}
           </div>
         </nav>
       </header>
@@ -83,13 +124,13 @@ const Landing = () => {
           <h2 className="text-3xl font-bold mb-4 text-white">
             Take Control of Your Finances
           </h2>
-          <p className="text-lg text-white  mb-8">
+          <p className="text-lg text-white mb-8">
             Track your expenses, set budgets, and achieve your financial goals
             with ease.
           </p>
           <button
             onClick={handleGetStartedClick}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-10 py-3 rounded-full"
+            className="bg-white text-black hover:bg-sky-900 hover:text-white font-semibold px-10 py-3 rounded-full"
           >
             Get Started
           </button>
