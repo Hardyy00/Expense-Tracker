@@ -1,3 +1,4 @@
+
 import { NavLink, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { GrLogout } from "react-icons/gr";
@@ -8,7 +9,7 @@ import { useEffect, useState } from "react";
 import { apiConnector } from "../../Operations/apiConnector";
 
 const SideBar = () => {
-  const [userDetails, setUserDetails] = useState(null); // State to store user details
+  const [userDetails, setUserDetails] = useState(null);
 
   useEffect(() => {
     const fetchUserDetails = async () => {
@@ -42,6 +43,7 @@ const SideBar = () => {
 
   return (
     <div className="bg-[#03071e] w-full h-[100vh] px-4 py-8 flex flex-col items-center justify-start gap-[5rem]">
+
       <div className="flex gap-4">
         <div className="w-[3rem] h-[3rem] bg-white rounded-full ">
           <img
@@ -59,9 +61,12 @@ const SideBar = () => {
         </div>
       </div>
 
+
       <div className="flex flex-col gap-4 text-[1.5rem] ">
         {" "}
         {/* Removed extra '<' here */}
+
+    
         <NavLink
           to="/"
           className={({ isActive }) =>
@@ -84,6 +89,7 @@ const SideBar = () => {
           <MdDashboard className="sm:mr-[1rem] sm:text-white flex text-[20px]" />
           DashBoard
         </NavLink>
+
         <NavLink
           to="/dashboard/visualization"
           className={({ isActive }) =>
@@ -95,6 +101,7 @@ const SideBar = () => {
           <PiGraphFill className="sm:mr-[1rem] sm:text-white text-[20px]" />
           Visualization
         </NavLink>
+
         <NavLink
           to="/"
           onClick={handleLogout}
@@ -108,6 +115,7 @@ const SideBar = () => {
           Logout
         </NavLink>
       </div>
+
 
     </div>
   );
