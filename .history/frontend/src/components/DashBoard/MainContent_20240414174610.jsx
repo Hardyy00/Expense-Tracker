@@ -239,7 +239,7 @@ const MainContent = () => {
                 />
               )}
 
-              <h2 className="self-start text-[1.2rem] text-violet-500">
+              <h2 className="self-start text-[1.2rem] text-orange-400">
                 Limit Tracker
               </h2>
 

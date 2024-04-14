@@ -239,10 +239,6 @@ const MainContent = () => {
                 />
               )}
 
-              <h2 className="self-start text-[1.2rem] text-violet-500">
-                Limit Tracker
-              </h2>
-
               <div className="flex w-full justify-between">
                 {/* {
                   <ProgressItem
@@ -253,56 +249,41 @@ const MainContent = () => {
                   />
                 } */}
 
-                {spentLimit > 0 && (
+                {
                   <div className="flex flex-col items-center gap-4">
                     <Progress.Circle
-                      percent={((spent * 100.0) / spentLimit).toFixed(2)}
-                      status={
-                        ((spent * 100.0) / spentLimit).toFixed(2) < 100
-                          ? "active"
-                          : "fail"
-                      }
+                      percent={90}
+                      status={"active"}
                       className="w-[8rem] text-white"
                     />
 
                     <h2 className="text-[1.2rem]">{"Spent"}</h2>
                   </div>
-                )}
+                }
 
-                {loanedFromLimit > 0 && (
+                {
                   <div className="flex flex-col items-center gap-4">
                     <Progress.Circle
-                      percent={((loanedFrom * 100.0) / loanedFromLimit).toFixed(
-                        2
-                      )}
-                      status={
-                        ((loanedFrom * 100.0) / loanedFromLimit).toFixed(2) <
-                        100
-                          ? "active"
-                          : "fail"
-                      }
+                      percent={90}
+                      status={"active"}
                       className="w-[8rem] text-white"
                     />
 
                     <h2 className="text-[1.2rem]">Loaned From</h2>
                   </div>
-                )}
+                }
 
-                {loanedToLimit > 0 && (
+                {
                   <div className="flex flex-col items-center gap-4">
                     <Progress.Circle
-                      percent={((loanedTo * 100.0) / loanedToLimit).toFixed(2)}
-                      status={
-                        ((loanedTo * 100.0) / loanedToLimit).toFixed(2) < 100
-                          ? "active"
-                          : "fail"
-                      }
+                      percent={90}
+                      status={"active"}
                       className="w-[8rem] text-white"
                     />
 
                     <h2 className="text-[1.2rem]">Loaned To</h2>
                   </div>
-                )}
+                }
               </div>
             </div>
           </Card>

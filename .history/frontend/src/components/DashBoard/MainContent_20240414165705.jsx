@@ -87,16 +87,6 @@ const MainContent = () => {
 
   const friends = expenses.filter((item) => item.friendName !== undefined);
 
-  const { spentLimit, loanedFromLimit, loanedToLimit } = useSelector(
-    (state) => {
-      return {
-        spentLimit: state.spentLimit,
-        loanedFromLimit: state.loanedFromLimit,
-        loanedToLimit: state.loanedToLimit,
-      };
-    }
-  );
-
   for (const item of expenses) {
     if (item.type === "Spent") {
       spent += item.amount;
@@ -206,8 +196,7 @@ const MainContent = () => {
               </h2>
             )}
 
-            <div className="flex flex-col w-full gap-8 items-center justify-center">
-              {spentCount +
+            {/* {spentCount +
                 earnedCount +
                 loanedToCount +
                 loanedFromCount +
@@ -237,79 +226,20 @@ const MainContent = () => {
                   width={400}
                   height={200}
                 />
-              )}
+              )} */}
 
-              <h2 className="self-start text-[1.2rem] text-violet-500">
-                Limit Tracker
-              </h2>
-
-              <div className="flex w-full justify-between">
-                {/* {
-                  <ProgressItem
-                    amount={spent}
-                    limit={1000}
-                    title={"Spent"}
-                    key={"p1"}
-                  />
-                } */}
-
-                {spentLimit > 0 && (
-                  <div className="flex flex-col items-center gap-4">
-                    <Progress.Circle
-                      percent={((spent * 100.0) / spentLimit).toFixed(2)}
-                      status={
-                        ((spent * 100.0) / spentLimit).toFixed(2) < 100
-                          ? "active"
-                          : "fail"
-                      }
-                      className="w-[8rem] text-white"
-                    />
-
-                    <h2 className="text-[1.2rem]">{"Spent"}</h2>
-                  </div>
-                )}
-
-                {loanedFromLimit > 0 && (
-                  <div className="flex flex-col items-center gap-4">
-                    <Progress.Circle
-                      percent={((loanedFrom * 100.0) / loanedFromLimit).toFixed(
-                        2
-                      )}
-                      status={
-                        ((loanedFrom * 100.0) / loanedFromLimit).toFixed(2) <
-                        100
-                          ? "active"
-                          : "fail"
-                      }
-                      className="w-[8rem] text-white"
-                    />
-
-                    <h2 className="text-[1.2rem]">Loaned From</h2>
-                  </div>
-                )}
-
-                {loanedToLimit > 0 && (
-                  <div className="flex flex-col items-center gap-4">
-                    <Progress.Circle
-                      percent={((loanedTo * 100.0) / loanedToLimit).toFixed(2)}
-                      status={
-                        ((loanedTo * 100.0) / loanedToLimit).toFixed(2) < 100
-                          ? "active"
-                          : "fail"
-                      }
-                      className="w-[8rem] text-white"
-                    />
-
-                    <h2 className="text-[1.2rem]">Loaned To</h2>
-                  </div>
-                )}
-              </div>
-            </div>
+            {expenses.length > 0 && (
+              <Progress.Circle
+                percent={100}
+                status="success"
+                className="w-[10rem]"
+              />
+            )}
           </Card>
         </div>
 
         {/* all  expenses will be shown here */}
-        <Card className="w-[38%] overflow-auto">
+        <Card className="w-[38%]">
           <h2 className="heading">Activities</h2>
 
           {length === 0 && (
@@ -325,11 +255,11 @@ const MainContent = () => {
             </div>
           )}
 
-          {/* {length > 5 && (
+          {length > 5 && (
             <button className="float-right mr-6 hover:text-cyan-400 transition-all duration-300 hover:scale-110">
               Show More
             </button>
-          )} */}
+          )}
         </Card>
       </div>
 

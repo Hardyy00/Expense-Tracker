@@ -87,16 +87,6 @@ const MainContent = () => {
 
   const friends = expenses.filter((item) => item.friendName !== undefined);
 
-  const { spentLimit, loanedFromLimit, loanedToLimit } = useSelector(
-    (state) => {
-      return {
-        spentLimit: state.spentLimit,
-        loanedFromLimit: state.loanedFromLimit,
-        loanedToLimit: state.loanedToLimit,
-      };
-    }
-  );
-
   for (const item of expenses) {
     if (item.type === "Spent") {
       spent += item.amount;
@@ -239,10 +229,6 @@ const MainContent = () => {
                 />
               )}
 
-              <h2 className="self-start text-[1.2rem] text-violet-500">
-                Limit Tracker
-              </h2>
-
               <div className="flex w-full justify-between">
                 {/* {
                   <ProgressItem
@@ -253,56 +239,35 @@ const MainContent = () => {
                   />
                 } */}
 
-                {spentLimit > 0 && (
-                  <div className="flex flex-col items-center gap-4">
+                {
+                  <div className="flex ">
                     <Progress.Circle
-                      percent={((spent * 100.0) / spentLimit).toFixed(2)}
-                      status={
-                        ((spent * 100.0) / spentLimit).toFixed(2) < 100
-                          ? "active"
-                          : "fail"
-                      }
+                      percent={90}
+                      status={"active"}
                       className="w-[8rem] text-white"
                     />
 
                     <h2 className="text-[1.2rem]">{"Spent"}</h2>
                   </div>
-                )}
+                }
 
-                {loanedFromLimit > 0 && (
-                  <div className="flex flex-col items-center gap-4">
-                    <Progress.Circle
-                      percent={((loanedFrom * 100.0) / loanedFromLimit).toFixed(
-                        2
-                      )}
-                      status={
-                        ((loanedFrom * 100.0) / loanedFromLimit).toFixed(2) <
-                        100
-                          ? "active"
-                          : "fail"
-                      }
-                      className="w-[8rem] text-white"
-                    />
+                {
+                  <ProgressItem
+                    amount={loanedTo}
+                    limit={1000}
+                    title={"Loaned To"}
+                    key={"p2"}
+                  />
+                }
 
-                    <h2 className="text-[1.2rem]">Loaned From</h2>
-                  </div>
-                )}
-
-                {loanedToLimit > 0 && (
-                  <div className="flex flex-col items-center gap-4">
-                    <Progress.Circle
-                      percent={((loanedTo * 100.0) / loanedToLimit).toFixed(2)}
-                      status={
-                        ((loanedTo * 100.0) / loanedToLimit).toFixed(2) < 100
-                          ? "active"
-                          : "fail"
-                      }
-                      className="w-[8rem] text-white"
-                    />
-
-                    <h2 className="text-[1.2rem]">Loaned To</h2>
-                  </div>
-                )}
+                {
+                  <ProgressItem
+                    amount={loanedFrom}
+                    limit={1000}
+                    title={"Loaned From"}
+                    key={"p3"}
+                  />
+                }
               </div>
             </div>
           </Card>
@@ -624,6 +589,21 @@ const Friend = ({ expense }) => {
       >
         ${expense.amount}
       </p>
+    </div>
+  );
+};
+
+const ProgressItem = ({ amount, limit, title }) => {
+  const percentage = ((+amount * 100.0) / +limit).toFixed(2);
+  return (
+    <div className="">
+      <Progress.Circle
+        percent={90}
+        status={`${percentage < 100 ? "active" : "fail"} `}
+        className="w-[8rem] text-white"
+      />
+
+      <h2 className="text-[1.2rem]">{title}</h2>
     </div>
   );
 };
