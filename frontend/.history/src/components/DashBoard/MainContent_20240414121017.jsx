@@ -268,11 +268,7 @@ const MainContent = () => {
                     return { ...pre, data: newValue };
                   });
                 }}
-                sx={{
-                  input: { color: "white" },
-                  svg: { color: "white" },
-                  label: { color: "red" },
-                }}
+                sx={{ input: { color: "white" }, svg: { color: white } }}
               />
             </LocalizationProvider>
             <FormControl className="w-[40%]">

@@ -62,7 +62,7 @@ const MainContent = () => {
   const [form, setForm] = useState({
     title: "",
     amount: 0,
-    date: dayjs(""),
+    date: dayjs("2022-04-17"),
   });
   const [subCategory, setSubCategory] = useState("");
   const [type, setType] = useState("");
@@ -261,18 +261,14 @@ const MainContent = () => {
             <h2 className="heading">Add Expense</h2>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DatePicker
-                label="Date"
+                label="Controlled picker"
                 value={form.date}
                 onChange={(newValue) => {
                   setForm((pre) => {
                     return { ...pre, data: newValue };
                   });
                 }}
-                sx={{
-                  input: { color: "white" },
-                  svg: { color: "white" },
-                  label: { color: "red" },
-                }}
+                sx={[{ color: "white " }]}
               />
             </LocalizationProvider>
             <FormControl className="w-[40%]">

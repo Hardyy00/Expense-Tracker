@@ -269,7 +269,7 @@ const MainContent = () => {
                   });
                 }}
                 sx={{
-                  input: { color: "white" },
+                  input: { color: "white", borderColor: "white" },
                   svg: { color: "white" },
                   label: { color: "red" },
                 }}

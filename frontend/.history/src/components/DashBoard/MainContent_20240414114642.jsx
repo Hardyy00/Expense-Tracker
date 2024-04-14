@@ -6,8 +6,6 @@ import {
   MenuItem,
   Select,
 } from "@mui/material";
-import dayjs from "dayjs";
-import { DatePicker } from "@mui/x-date-pickers";
 import { PieChart, pieArcLabelClasses } from "@mui/x-charts";
 import Card from "../../UI/Card";
 import { useState } from "react";
@@ -25,8 +23,6 @@ import { LuSofa } from "react-icons/lu";
 import { GiCommercialAirplane } from "react-icons/gi";
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../../store/store";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 const ariaLabel = { "aria-label": "description" };
 
@@ -59,11 +55,7 @@ const iconsMap = {
 const MainContent = () => {
   const dispatch = useDispatch();
   const [category, setCategory] = useState("");
-  const [form, setForm] = useState({
-    title: "",
-    amount: 0,
-    date: dayjs(""),
-  });
+  const [form, setForm] = useState({ title: "", amount: 0 });
   const [subCategory, setSubCategory] = useState("");
   const [type, setType] = useState("");
 
@@ -259,22 +251,6 @@ const MainContent = () => {
           <div className="flex gap-4 w-full items-center justify-between">
             {" "}
             <h2 className="heading">Add Expense</h2>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DatePicker
-                label="Date"
-                value={form.date}
-                onChange={(newValue) => {
-                  setForm((pre) => {
-                    return { ...pre, data: newValue };
-                  });
-                }}
-                sx={{
-                  input: { color: "white" },
-                  svg: { color: "white" },
-                  label: { color: "red" },
-                }}
-              />
-            </LocalizationProvider>
             <FormControl className="w-[40%]">
               <InputLabel
                 id="demo-simple-select-label"
@@ -437,7 +413,7 @@ const MainContent = () => {
 
           <div className="flex flex-col">
             {friends.length == 0 && (
-              <h2 className="text-center w-full py-12">No Friends</h2>
+              <h2 className="text-center w-full py-8">No Friends</h2>
             )}
             {friends.slice(0, 3).map((item, index) => (
               <Friend key={index} expense={item} />
