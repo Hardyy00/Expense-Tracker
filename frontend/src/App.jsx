@@ -8,11 +8,11 @@ import Landing from "./components/Landing/Landing";
 import Register from "./components/Register/Register";
 import Login from "./components/Login/Login";
 import Error404 from "./components/Error404/Error404";
+import Signup from "./components/Signup/Signup";
 const App = () => {
   return (
     <Router>
       <Routes>
-      
         <Route path="/*" element={<Error404 />} />
         <Route path="/" element={<Landing />} />
         <Route path="/register" element={<Register />} />

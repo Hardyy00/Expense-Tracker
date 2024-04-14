@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { apiConnector } from "../../Operations/apiConnector";
 import { message } from "antd";
-const Register = () => {
+const Signup = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     password: "",
@@ -283,4 +283,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Signup;
