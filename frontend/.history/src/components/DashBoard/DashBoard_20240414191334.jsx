@@ -5,19 +5,14 @@ import MainContent from "./MainContent";
 import LimitTaker from "./LimitTaker";
 import Drawer from "@mui/material/Drawer";
 import { Button } from "@mui/material";
-import { useState } from "react";
 
 const DashBoard = () => {
   const [open, setOpen] = useState(false);
   return (
     <div className="px-8 py-4">
-      <Drawer anchor="top" open={open} onClose={() => setOpen(false)}>
+      <Drawer anchor="top" open={open}>
         <div className="bg-[#19264d] p-8">
-          <div className="flex w-full justify-around">
-            <LimitTaker label={"Spending Limit"} />
-            <LimitTaker label={"Loan From Limit"} />
-            <LimitTaker label={"Loan To Limit"} />
-          </div>
+          <h1>Hiii</h1>
         </div>
       </Drawer>
 
