@@ -6,7 +6,6 @@ import {
   MenuItem,
   Select,
 } from "@mui/material";
-import dayjs from "dayjs";
 import { DatePicker } from "@mui/x-date-pickers";
 import { PieChart, pieArcLabelClasses } from "@mui/x-charts";
 import Card from "../../UI/Card";
@@ -59,11 +58,7 @@ const iconsMap = {
 const MainContent = () => {
   const dispatch = useDispatch();
   const [category, setCategory] = useState("");
-  const [form, setForm] = useState({
-    title: "",
-    amount: 0,
-    date: dayjs(""),
-  });
+  const [form, setForm] = useState({ title: "", amount: 0, date: "" });
   const [subCategory, setSubCategory] = useState("");
   const [type, setType] = useState("");
 
@@ -261,17 +256,12 @@ const MainContent = () => {
             <h2 className="heading">Add Expense</h2>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DatePicker
-                label="Date"
+                label="Controlled picker"
                 value={form.date}
                 onChange={(newValue) => {
                   setForm((pre) => {
                     return { ...pre, data: newValue };
                   });
-                }}
-                sx={{
-                  input: { color: "white" },
-                  svg: { color: "white" },
-                  label: { color: "red" },
                 }}
               />
             </LocalizationProvider>

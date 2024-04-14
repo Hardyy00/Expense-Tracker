@@ -272,6 +272,7 @@ const MainContent = () => {
                   input: { color: "white" },
                   svg: { color: "white" },
                   label: { color: "red" },
+                  borderColor: "white",
                 }}
               />
             </LocalizationProvider>

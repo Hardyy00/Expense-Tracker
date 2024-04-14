@@ -6,9 +6,7 @@ import {
   MenuItem,
   Select,
 } from "@mui/material";
-import dayjs from "dayjs";
-import { DatePicker } from "@mui/x-date-pickers";
-import { PieChart, pieArcLabelClasses } from "@mui/x-charts";
+import { PieChart } from "@mui/x";
 import Card from "../../UI/Card";
 import { useState } from "react";
 import Input from "@mui/material/Input";
@@ -25,8 +23,6 @@ import { LuSofa } from "react-icons/lu";
 import { GiCommercialAirplane } from "react-icons/gi";
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../../store/store";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 const ariaLabel = { "aria-label": "description" };
 
@@ -59,11 +55,7 @@ const iconsMap = {
 const MainContent = () => {
   const dispatch = useDispatch();
   const [category, setCategory] = useState("");
-  const [form, setForm] = useState({
-    title: "",
-    amount: 0,
-    date: dayjs(""),
-  });
+  const [form, setForm] = useState({ title: "", amount: 0 });
   const [subCategory, setSubCategory] = useState("");
   const [type, setType] = useState("");
 
@@ -74,13 +66,6 @@ const MainContent = () => {
     gaveBack = 0,
     gotFrom = 0;
 
-  let spentCount = 0,
-    earnedCount = 0,
-    loanedToCount = 0,
-    loanedFromCount = 0,
-    gaveBackCount = 0,
-    gotFromCount = 0;
-
   let expenses = useSelector((state) => state.expenses);
   const length = expenses.length;
 
@@ -89,22 +74,16 @@ const MainContent = () => {
   for (const item of expenses) {
     if (item.type === "Spent") {
       spent += item.amount;
-      spentCount++;
     } else if (item.type === "Earned") {
       earned += item.amount;
-      earnedCount++;
     } else if (item.type === "Loaned to Friend") {
       loanedTo += item.amount;
-      loanedToCount++;
     } else if (item.type === "Loaned from Friend") {
       loanedFrom += item.amount;
-      loanedFromCount++;
     } else if (item.type === "Got Back From") {
       gotFrom += item.amount;
-      gotFromCount++;
     } else {
       gaveBack += item.amount;
-      gaveBackCount++;
     }
   }
 
@@ -180,52 +159,8 @@ const MainContent = () => {
               />
             </div>
           </Card>
-          <Card className="">
+          <Card className="p-[8rem]">
             <h2 className="heading">Expense Statistics</h2>
-
-            {spentCount +
-              earnedCount +
-              loanedToCount +
-              loanedFromCount +
-              gaveBackCount +
-              gotFromCount ==
-              0 && (
-              <h2 className="w-full text-center p-8">
-                No Expenses to display Chart
-              </h2>
-            )}
-
-            {spentCount +
-              earnedCount +
-              loanedToCount +
-              loanedFromCount +
-              gaveBackCount +
-              gotFromCount >
-              0 && (
-              <PieChart
-                colors={["red", "green", "pink", "yellow", "black", "white"]}
-                series={[
-                  {
-                    data: [
-                      { id: 0, value: spentCount, label: "Spent" },
-                      { id: 1, value: earnedCount, label: "Earned" },
-                      { id: 2, value: loanedFromCount, label: "Loaned From" },
-                      { id: 3, value: loanedToCount, label: "Loaned To" },
-                      { id: 4, value: gaveBackCount, label: "Gave Back" },
-                      { id: 5, value: gotFromCount, label: "Got Back" },
-                    ],
-                  },
-                ]}
-                sx={{
-                  [`&.${pieArcLabelClasses.root}`]: {
-                    fill: "white",
-                    fontWeight: "bold",
-                  },
-                }}
-                width={400}
-                height={200}
-              />
-            )}
           </Card>
         </div>
 
@@ -259,22 +194,6 @@ const MainContent = () => {
           <div className="flex gap-4 w-full items-center justify-between">
             {" "}
             <h2 className="heading">Add Expense</h2>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DatePicker
-                label="Date"
-                value={form.date}
-                onChange={(newValue) => {
-                  setForm((pre) => {
-                    return { ...pre, data: newValue };
-                  });
-                }}
-                sx={{
-                  input: { color: "white" },
-                  svg: { color: "white" },
-                  label: { color: "red" },
-                }}
-              />
-            </LocalizationProvider>
             <FormControl className="w-[40%]">
               <InputLabel
                 id="demo-simple-select-label"
@@ -436,9 +355,6 @@ const MainContent = () => {
           <h2 className="heading">Friends</h2>
 
           <div className="flex flex-col">
-            {friends.length == 0 && (
-              <h2 className="text-center w-full py-12">No Friends</h2>
-            )}
             {friends.slice(0, 3).map((item, index) => (
               <Friend key={index} expense={item} />
             ))}

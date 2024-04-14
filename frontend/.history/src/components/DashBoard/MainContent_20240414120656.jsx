@@ -62,7 +62,7 @@ const MainContent = () => {
   const [form, setForm] = useState({
     title: "",
     amount: 0,
-    date: dayjs(""),
+    date: dayjs("2022-04-17"),
   });
   const [subCategory, setSubCategory] = useState("");
   const [type, setType] = useState("");
@@ -268,11 +268,7 @@ const MainContent = () => {
                     return { ...pre, data: newValue };
                   });
                 }}
-                sx={{
-                  input: { color: "white" },
-                  svg: { color: "white" },
-                  label: { color: "red" },
-                }}
+                sx={[{ color: "inherit" }]}
               />
             </LocalizationProvider>
             <FormControl className="w-[40%]">
