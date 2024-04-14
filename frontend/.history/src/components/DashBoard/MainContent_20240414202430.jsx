@@ -127,7 +127,7 @@ const MainContent = () => {
       category,
       subCategory,
       type,
-      date: new Date(form.date).toLocaleString(),
+      date : new Date(form.date);
     };
 
     console.log(data);

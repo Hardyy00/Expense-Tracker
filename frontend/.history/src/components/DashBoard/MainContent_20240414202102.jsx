@@ -127,10 +127,7 @@ const MainContent = () => {
       category,
       subCategory,
       type,
-      date: new Date(form.date).toLocaleString(),
     };
-
-    console.log(data);
 
     if (
       type === "Loaned to Friend" ||
@@ -364,6 +361,7 @@ const MainContent = () => {
                 label="Date"
                 value={form.date}
                 onChange={(newValue) => {
+                  console.log(newValue);
                   setForm((pre) => {
                     return { ...pre, date: newValue };
                   });

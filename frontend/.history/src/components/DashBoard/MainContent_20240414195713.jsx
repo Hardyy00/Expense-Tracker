@@ -127,10 +127,7 @@ const MainContent = () => {
       category,
       subCategory,
       type,
-      date: new Date(form.date).toLocaleString(),
     };
-
-    console.log(data);
 
     if (
       type === "Loaned to Friend" ||
@@ -270,10 +267,7 @@ const MainContent = () => {
 
                     <h2 className="text-[1.2rem]">{"Spent"}</h2>
                     <h3>
-                      <span className="text-orange-400">Limit : </span>{" "}
-                      <span className="font-bold text-green-500">
-                        {spentLimit}
-                      </span>
+                      Limit : <span>{spentLimit}</span>
                     </h3>
                   </div>
                 )}
@@ -318,9 +312,7 @@ const MainContent = () => {
                     <h2 className="text-[1.2rem]">Loaned To</h2>
                     <h3>
                       <span className="text-orange-400">Limit : </span>
-                      <span className="font-bold text-green-500">
-                        {loanedToLimit}
-                      </span>
+                      <span>{loanedToLimit}</span>
                     </h3>
                   </div>
                 )}
@@ -365,7 +357,7 @@ const MainContent = () => {
                 value={form.date}
                 onChange={(newValue) => {
                   setForm((pre) => {
-                    return { ...pre, date: newValue };
+                    return { ...pre, data: newValue };
                   });
                 }}
                 sx={{

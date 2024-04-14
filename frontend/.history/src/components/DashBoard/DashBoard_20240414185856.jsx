@@ -2,31 +2,13 @@ import { IoIosNotifications } from "react-icons/io";
 import { FaSearch } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";
 import MainContent from "./MainContent";
-import LimitTaker from "./LimitTaker";
-import Drawer from "@mui/material/Drawer";
-import { Button } from "@mui/material";
-import { useState } from "react";
-
 const DashBoard = () => {
-  const [open, setOpen] = useState(false);
   return (
     <div className="px-8 py-4">
-      <Drawer anchor="top" open={open} onClose={() => setOpen(false)}>
-        <div className="bg-[#19264d] p-8">
-          <div className="flex w-full justify-around">
-            <LimitTaker label={"Spending Limit"} />
-            <LimitTaker label={"Loan From Limit"} />
-            <LimitTaker label={"Loan To Limit"} />
-          </div>
-        </div>
-      </Drawer>
-
       <div className="flex items-center justify-between">
         <h1 className="text-[2.5rem]">DashBoard</h1>
 
-        <Button variant="contained" onClick={() => setOpen(true)}>
-          Open Drawer
-        </Button>
+        <LimitTaker />
 
         <div className="flex gap-8 item-center">
           <div className="flex relative">

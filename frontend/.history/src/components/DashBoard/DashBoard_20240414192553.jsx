@@ -15,8 +15,8 @@ const DashBoard = () => {
         <div className="bg-[#19264d] p-8">
           <div className="flex w-full justify-around">
             <LimitTaker label={"Spending Limit"} />
-            <LimitTaker label={"Loan From Limit"} />
-            <LimitTaker label={"Loan To Limit"} />
+            <LimitTaker label={""} />
+            <LimitTaker />
           </div>
         </div>
       </Drawer>
