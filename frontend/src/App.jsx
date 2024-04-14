@@ -8,7 +8,6 @@ import Landing from "./components/Landing/Landing";
 import Register from "./components/Register/Register";
 import Login from "./components/Login/Login";
 import Error404 from "./components/Error404/Error404";
-
 const App = () => {
   return (
     <Router>

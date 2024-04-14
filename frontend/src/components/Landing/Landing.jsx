@@ -1,116 +1,242 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import bgImage from "../../assets/bg-removebg-preview.png";
+import Cookies from "js-cookie";
+import { BsGraphUpArrow } from "react-icons/bs";
+import {  FaTwitter,  FaGithub,  FaFacebook,  FaInstagram,  FaLinkedin,} from "react-icons/fa";
+import { AiOutlineDollar } from "react-icons/ai";
+import { BsGraphUp } from "react-icons/bs";
+import { MdAccountBalanceWallet } from "react-icons/md";
+import { IoIosLogIn } from "react-icons/io";
 
 const Landing = () => {
-  const [menuActive, setMenuActive] = useState(false);
-  let navigate = useNavigate();
-  const toggleMenu = () => {
-    setMenuActive(!menuActive);
-  };
-
-  const handleGetStartedClick = () => {
-    navigate("/register");
-  };
-
+    const [menuActive, setMenuActive] = useState(false);
+    const [isLogined, setIsLogined] = useState(false);
+  
+    useEffect(() => {
+      if (Cookies.get("authToken")) {
+        setIsLogined(true);
+      }
+    }, []);
+  
+    const navigate = useNavigate();
+  
+    const toggleMenu = () => {
+      setMenuActive(!menuActive);
+    };
+  
+    const handleGetStartedClick = () => {
+      navigate("/register");
+    };
   return (
-    <div
-      className="landing-page  bg-repeat bg-black h-[100vh] relative"
-      style={{
-        backgroundImage: `url("https://www.streebo.com/wp-content/themes/streebo/images/LangingPage/Expense-Management-Cloud-DXA/Expense-Management-Cloud-DXA-banner.jpg")`,
-      backgroundSize:'cover' }}
-    >
-      <header className="py-4 px-6 bg-white shadow-md flex justify-between items-center">
-        <h1 className="text-xl font-semibold">Expense Tracker</h1>
-        <div className="md:hidden">
-          <button
-            onClick={toggleMenu}
-            className="text-gray-600 focus:outline-none"
-          >
-            <svg
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              ></path>
-            </svg>
-          </button>
-        </div>
-        <nav
-          className={`md:flex md:items-center md:space-x-4 ${
-            menuActive ? "block" : "hidden"
-          }`}
-        >
-          <ul className="md:flex md:space-x-4 justify-center">
-            <li>
-              <a href="#" className="text-gray-600 hover:text-gray-900">
-                Home
-              </a>
-            </li>
-            <li>
-              <a href="#" className="text-gray-600 hover:text-gray-900">
-                About
-              </a>
-            </li>
-            <li>
-              <a href="#" className="text-gray-600 hover:text-gray-900">
-                Contact
-              </a>
-            </li>
-          </ul>
-          <div className="flex items-center space-x-4">
-            <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded-full">
-              <Link to="/login">Login</Link>
+    <div className="bg-[#101935] relative text-white w-full">
+      <header className=" bg-[#0f131e] w-full z-30 sticky top-0 bg-blue shadow-md">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="flex items-center justify-between h-20">
+            <div className="mr-4">
+              <Link to="/" className="block" aria-label="Expense Tracker">
+                <h1 className="text-xl font-semibold flex items-center gap-1 text-black-600">
+                  <BsGraphUpArrow className="text-2xl" />
+                  Expense Tracker
+                </h1>
+              </Link>
+            </div>
+
+            <nav className="hidden md:flex md:grow justify-end">
+              <ul className="flex items-center">
+                <li>
+                <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded-full">
+              {isLogined ? (
+                <Link
+                  to="/dashboard"
+                  className="flex justify-center items-center gap-[10px]"
+                >
+                  <IoIosLogIn className="text-[1.5rem]" />
+                  My Account
+                </Link>
+              ) : (
+                <Link
+                  to="/login"
+                  className="flex justify-center items-center gap-[10px]"
+                >
+                  <IoIosLogIn className="text-[1.5rem]" />
+                  Login
+                </Link>
+              )}
             </button>
-            <button
-              onClick={handleGetStartedClick}
-              className="bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded-full"
-            >
-              Signup
-            </button>
+                </li>
+                
+              </ul>
+            </nav>
           </div>
-        </nav>
+        </div>
       </header>
 
-      <section className="hero px-20 py-16 flex items-center justify-between">
-        <div className="max-w-lg px-10 py-10">
-          <h2 className="text-3xl font-bold mb-4 text-white">
-            Take Control of Your Finances
-          </h2>
-          <p className="text-lg text-white  mb-8">
-            Track your expenses, set budgets, and achieve your financial goals
-            with ease.
-          </p>
-          <button
-            onClick={handleGetStartedClick}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-10 py-3 rounded-full"
-          >
-            Get Started
-          </button>
+      <section max-w-6xl mx-auto px-4 sm:px-6 mb-1>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 relative">
+          <div className="relative pt-20 pb-10 md:pt-32 md:pb-16">
+            <div className="max-w-3xl mx-auto text-center pb-8 md:pb-12">
+              <h1 className="text-4xl font-semibold mb-4">
+                Expense Tracker Landing Page
+              </h1>
+              <p className="text-lg text-gray-500 mb-8">
+                Keep track of your expenses effortlessly with our intuitive
+                expense tracker app. Manage your finances anytime, anywhere.
+              </p>
+              <div className="max-w-xs mx-auto sm:max-w-none sm:flex sm:justify-center">
+                <div>
+                  <Link
+                    to="/register"
+                    className="btn-sm text-white bg-black hover:bg-blue-700 ml-3 px-4 py-3"
+                  >
+                    Get Started
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div
-          className="bg-cover bg-right w-1/2 h-full"
-          style={{ backgroundImage: `url(${bgImage})` }}
-        ></div>
       </section>
 
-      <footer className="text-white absolute bottom-10 w-full">
-        <div className="container mx-auto px-20">
-          <div className="flex justify-center items-center">
-            <p className="text-sm">
-              &copy; 2024 Expense Tracker. All rights reserved.
-            </p>
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 mb-12">
+        <div className="max-w-6xl mx-auto px-0 sm:px-6">
+          <div className="py-12 md:py-20">
+            <div className="max-w-3xl mx-auto text-center pb-12 md:pb-20">
+              <h2 className="text-4xl font-semibold mb-4">
+                Features
+              </h2>
+              <p className="text-xl text-gray-400">
+                With our intuitive Expense Tracker app, managing your finances
+                has never been easier. Track your expenses, visualize your
+                spending patterns, and take control of your financial future.
+              </p>
+            </div>
+
+            <div className="max-w-sm mx-auto grid gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-16 items-start md:max-w-2xl lg:max-w-none">
+            
+              <div className="relative flex flex-col items-center">
+                <AiOutlineDollar className="w-16 h-16 mb-4 text-black-600" />
+                <h4 className="h4 mb-2">Expense Tracking</h4>
+                <p className="text-lg text-gray-400 text-center">
+                  Easily track your expenses and see where your money is going
+                  with our intuitive expense tracking feature.
+                </p>
+              </div>
+
+            
+              <div
+                className="relative flex flex-col items-center"
+              >
+                <BsGraphUp className="w-16 h-16 mb-4 text-black-600" />
+                <h4 className="h4 mb-2">Financial Insights</h4>
+                <p className="text-lg text-gray-400 text-center">
+                  Gain valuable insights into your spending habits and financial
+                  trends through interactive graphs and charts.
+                </p>
+              </div>
+
+             
+              <div
+                className="relative flex flex-col items-center"
+              >
+                <MdAccountBalanceWallet className="w-16 h-16 mb-4 text-black-600" />
+                <h4 className="h4 mb-2">Budget Management</h4>
+                <p className="text-lg text-gray-400 text-center">
+                  Take control of your finances by setting budgets and receiving
+                  alerts when you exceed your spending limits.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 mb-12">
+        <div className="relative bg-[#0f131e] py-10 px-8 md:py-16 md:px-12">
+          <div className="relative flex flex-col lg:flex-row justify-between items-center">
+            <div className="mb-6 lg:mr-16 lg:mb-0 text-center lg:text-left lg:w-1/2">
+              <h3 className="h3 text-white mb-2">Stay in the loop</h3>
+              <p className="text-purple-200 text-lg">
+                Join our newsletter to get top news before anyone else.
+              </p>
+            </div>
+            <form className="w-full lg:w-1/2">
+              <div className="flex flex-col sm:flex-row justify-center max-w-xs mx-auto sm:max-w-md lg:max-w-none">
+                <input
+                  type="email"
+                  className="w-full appearance-none bg-black-700 border border-black-500 rounded-sm px-4 py-3 mb-2 sm:mb-0 sm:mr-2 text-black placeholder-black-400"
+                  placeholder="Your best email…"
+                />
+                <Link
+                  to="/subscribe"
+                  className="btn-sm text-black bg-white hover:bg-red-700 ml-3 px-4 py-3"
+                >
+                  Subscribe
+                </Link>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <footer className="bg-gray-900 py-20 md:py-16 px-10">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="md:flex md:items-center md:justify-between">
+            <ul className="flex mb-4 md:order-1 md:ml-4 md:mb-0">
+              <li>
+                <Link
+                  to="/"
+                  className="flex justify-center items-center text-white bg-black hover:text-gray-100 hover:bg-white rounded-full transition duration-150 ease-in-out p-2"
+                  aria-label="Twitter"
+                >
+                  <FaTwitter className="w-6 h-6 fill-current" />
+                </Link>
+              </li>
+              <li className="ml-4">
+                <Link
+                  to="/"
+                  className="flex justify-center items-center text-white bg-black hover:text-gray-100 hover:bg-white rounded-full transition duration-150 ease-in-out p-2"
+                  aria-label="Github"
+                >
+                  <FaGithub className="w-6 h-6 fill-current" />
+                </Link>
+              </li>
+              <li className="ml-4">
+                <Link
+                  to="/"
+                  className="flex justify-center items-center text-white bg-black hover:text-gray-100 hover:bg-white rounded-full transition duration-150 ease-in-out p-2"
+                  aria-label="Facebook"
+                >
+                  <FaFacebook className="w-6 h-6 fill-current" />
+                </Link>
+              </li>
+              <li className="ml-4">
+                <Link
+                  to="/"
+                  className="flex justify-center items-center text-white bg-black hover:text-gray-100 hover:bg-white rounded-full transition duration-150 ease-in-out p-2"
+                  aria-label="Instagram"
+                >
+                  <FaInstagram className="w-6 h-6 fill-current" />
+                </Link>
+              </li>
+              <li className="ml-4">
+                <Link
+                  to="/"
+                  className="flex justify-center items-center text-white bg-black hover:text-gray-100 hover:bg-white rounded-full transition duration-150 ease-in-out p-2"
+                  aria-label="Linkedin"
+                >
+                  <FaLinkedin className="w-6 h-6 fill-current" />
+                </Link>
+              </li>
+            </ul>
+
+            <div className="text-white text-sm mr-4">
+              &copy; Expense Tracker. All rights reserved.
+            </div>
           </div>
         </div>
       </footer>
     </div>
   );
-};
+}
 
 export default Landing;
