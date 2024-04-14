@@ -1,9 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { message } from "antd";
-import { apiConnector } from "../../Operations/apiConnector";
-import { IoChevronBackCircle } from "react-icons/io5";
-import Cookies from 'js-cookie';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -23,22 +19,16 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-    //   console.log("login ka form data",formData);
-
       const res = await apiConnector(
         "post",
         "http://localhost:8000/login",
         formData
       );
       if (res.data.success) {
-        // console.log("Inside frontend: ", res.data.token);
-        // document.cookie = `authToken=${res.data.token}; path=/;`;
-        // localStorage.setItem("authToken", res.data.token);
-          // document.cookie = `loginedUser=${res.data.user._id}; path=/;`;
-          Cookies.set('authToken', res.data.token);
-          Cookies.set('loginedUser', res.data.user._id);
+        Cookies.set("authToken", res.data.token);
+        Cookies.set("loginedUser", res.data.user._id);
         message.success("Logged in Successfully");
-        navigate(`/dashboard`);
+        navigate("/dashboard");
       } else {
         message.error(res.data.message);
       }
@@ -49,72 +39,79 @@ const Login = () => {
   };
 
   return (
-    <div className="login-wrapper w-full h-[100vh] flex bg-gradient-to-r from-yellow-800 to-white">
-      <div className="container  sm:w-[50%] h-[100vh] flex flex-col justify-center z-20 w-0">
-        <h1 className="sm:text-[4rem] text-[2rem] font-bold text-center my-8 bg-gradient-to-r from-white-500 to-pink-800 text-transparent bg-clip-text ">
-          Welcome to Expense Tracker
-        </h1>
-        <form
-          onSubmit={handleSubmit}
-          className="w-max mx-auto p-[6rem] sm:text-[2rem] text-[1rem] "
-        >
-          <div className="mb-4 flex">
-            <label
-              htmlFor="username"
-              className="block mb-1 font-thin text-slate-200"
-            >
-              Username*
-            </label>
-            <input
-              type="text"
-              id="username"
-              name="username"
-              value={formData.username}
-              onChange={handleChange}
-              className="sm:w-full px-3 py-2  border-pink-200 bg-transparent border-b-2 text-grey-600  outline-none"
-              required
-            />
-          </div>
-          <div className="mb-[5rem] flex">
-            <label
-              htmlFor="password"
-              className="block mb-1 font-thin mt-2 text-white"
-            >
-              Password*
-            </label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              className="w-full px-3 py-2  border-pink-200 bg-transparent border-b-2  outline-none"
-              required
-            />
-          </div>
-          <button
-            type="submit"
-            className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
-          >
-            Login
-          </button>
-          <button className=" opacity-[0.7] w-full bg-black text-white py-2 px-4 rounded-full hover:bg-white hover:text-red-800 mt-[4rem]">
-            <Link to="/register">Signup</Link>
-          </button>
-        </form>
-      </div>
+    <div className="bg-[#101935] text-white w-full h-full">
+      <section>
+        <div className="mx-auto px-4 sm:px-6">
+          <div className="pt-32 pb-12 md:pt-40 md:pb-20">
+            <div className="max-w-3xl mx-auto text-center pb-12 md:pb-20">
+              <h1 className="text-4xl font-semibold">Welcome Back</h1>
+            </div>
+            <div className="max-w-sm mx-auto">
+              <form onSubmit={handleSubmit}>
+                <div className="flex flex-wrap -mx-3 mb-4">
+                  <div className="w-full px-3">
+                    <label
+                      className="block text-gray-300 text-lg font-medium mb-1"
+                      htmlFor="email"
+                    >
+                      Username
+                    </label>
+                    <input
+                      type="text"
+                      id="username"
+                      name="username"
+                      value={formData.username}
+                      onChange={handleChange}
+                      className="form-input w-full text-gray-300 bg-transparent border-b-2 border-gray-400 focus:border-white"
+                      placeholder="@hereshivang"
+                      required
+                    />
+                  </div>
+                </div>
 
-      <Link
-        to="/"
-        className="flex ml-[57%] absolute mt-[4rem] text-[1.4rem] text-white"
-      >
-        <IoChevronBackCircle className="text-[5rem] z-20" />
-      </Link>
-      <img
-        src="https://play-lh.googleusercontent.com/iahXn0KlLte_rQg9wdgwA1M1ohWwQ15AlbD7cINrJMCdPXEZ59mlXS3YzZRsNkGl1sg"
-        alt=""
-        className="sm:w-[52%]  w-full rounded-l-[30%] z-10 w"
-      />
+
+                <div className="flex flex-wrap -mx-3 mb-4">
+                  <div className="w-full px-3">
+                    <label
+                      className="block text-gray-300 text-lg font-medium mb-1"
+                      htmlFor="password"
+                    >
+                      Password
+                    </label>
+                    <input
+                      type="password"
+                      id="password"
+                      name="password"
+                      value={formData.password}
+                      onChange={handleChange}
+                      className="form-input w-full text-gray-300 bg-transparent border-b-2 border-gray-400 focus:border-white"
+                      placeholder="Password (at least 10 characters)"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap -mx-3 mt-6">
+                  <div className="w-full px-3">
+                    <button className="btn text-white bg-gradient-to-r from-purple-600 to-blue-600 hover:from-blue-600 hover:to-purple-600 w-full py-3 rounded-full transition duration-300 ease-in-out transform hover:scale-105">
+                      Sign in
+                    </button>
+                  </div>
+                </div>
+              </form>
+              <div className="text-gray-300 text-center mt-6">
+                Don’t you have an account?{" "}
+                <Link
+                  to="/register"
+                  className="text-red-600 hover:text-white transition duration-150 ease-in-out"
+                >
+                  Sign up
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
