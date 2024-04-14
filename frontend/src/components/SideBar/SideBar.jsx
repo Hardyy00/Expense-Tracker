@@ -3,9 +3,10 @@ import image from "../../assets/img.png";
 
 const links = [
   { id: "l1", path: "/dashboard", name: "DashBoard" },
-  { id: "l2", path: "/visualization", name: "Visualization" },
-  { id: "l3", path: "/notifier", name: "Notifier" },
+  { id: "l2", path: "/dashboard/visualization", name: "Visualization" },
+  { id: "l3", path: "/dashboard/notifier", name: "Notifier" },
 ];
+
 const SideBar = () => {
   return (
     <div className="bg-[#03071e] w-full h-full px-4 py-8 flex flex-col items-center justify-between">
@@ -35,6 +36,8 @@ const SideBar = () => {
             >
               {item.name}
             </NavLink>
+
+            
           ))}
         </div>
       </div>
