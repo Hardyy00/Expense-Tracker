@@ -1,8 +1,8 @@
 import { NavLink , useNavigate} from "react-router-dom";
 import Cookies from "js-cookie";
-import { GrLogout } from "react-icons/gr";
 import { MdDashboard } from "react-icons/md";
 import { PiGraphFill } from "react-icons/pi";
+import { RiLogoutBoxRLine } from 'react-icons/ri';
 import { useEffect, useState } from "react";
 import { apiConnector } from "../../Operations/apiConnector";
 
@@ -89,11 +89,16 @@ const SideBar = () => {
       <div>
      
       </div>
-      
+
       <div>
-        <button>Logout</button>
-      </div>
-    
+      <button
+        onClick={handleLogout}
+        className="flex items-center justify-center px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 focus:outline-none focus:bg-red-600"
+      >
+        <RiLogoutBoxRLine className="w-6 h-6 mr-2" />
+        Logout
+      </button>
+    </div>
     </div>
   );
 };
