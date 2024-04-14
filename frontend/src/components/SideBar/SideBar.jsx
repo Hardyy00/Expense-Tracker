@@ -66,18 +66,6 @@ const SideBar = () => {
         {" "}
         {/* Removed extra '<' here */}
 
-    
-        <NavLink
-          to="/"
-          className={({ isActive }) =>
-            isActive
-              ? "text-[102%] flex items-center"
-              : "text-[#5d6383] flex  items-center"
-          }
-        >
-          <FaHome className="sm:mr-[1rem] sm:text-white flex text-[20px]" />
-          Home
-        </NavLink>
         <NavLink
           to="/dashboard"
           className={({ isActive }) =>
@@ -100,6 +88,18 @@ const SideBar = () => {
         >
           <PiGraphFill className="sm:mr-[1rem] sm:text-white text-[20px]" />
           Visualization
+        </NavLink>
+
+        <NavLink
+          to="/dashboard/notifier"
+          className={({ isActive }) =>
+            isActive
+              ? "text-[102%] flex  items-center"
+              : "text-[#5d6383] flex  items-center"
+          }
+        >
+          <PiGraphFill className="sm:mr-[1rem] sm:text-white text-[20px]" />
+          Notifier
         </NavLink>
 
         <NavLink
