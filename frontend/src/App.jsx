@@ -12,6 +12,7 @@ const App = () => {
   return (
     <Router>
       <Routes>
+      
         <Route path="/*" element={<Error404 />} />
         <Route path="/" element={<Landing />} />
         <Route path="/register" element={<Register />} />
