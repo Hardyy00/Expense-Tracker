@@ -239,9 +239,7 @@ const MainContent = () => {
                 />
               )}
 
-              <h2 className="self-start text-[1.2rem] text-violet-500">
-                Limit Tracker
-              </h2>
+              <h2 className="self-start">Limit Tracker</h2>
 
               <div className="flex w-full justify-between">
                 {/* {

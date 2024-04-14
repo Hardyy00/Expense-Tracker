@@ -4,7 +4,8 @@ import App from "./App.jsx";
 import "./index.css";
 import { Provider } from "react-redux";
 import store from "./store/store.js";
-import "rsuite/dist/rsuite-no-reset.min.css";
++ import 'rsuite/dist/rsuite.min.css';  // or 'rsuite/styles/index.less';
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>

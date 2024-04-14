@@ -4,9 +4,9 @@ const userSlice = createSlice({
   name: "User",
   initialState: {
     expenses: [],
-    spentLimit: 1000,
-    loanedFromLimit: 1000,
-    loanedToLimit: 1000,
+    spentLimit: 0,
+    loanedFromLimit: 0,
+    loanedToLimit: 0,
   },
   reducers: {
     addExpense(state, action) {

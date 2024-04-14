@@ -239,10 +239,6 @@ const MainContent = () => {
                 />
               )}
 
-              <h2 className="self-start text-[1.2rem] text-violet-500">
-                Limit Tracker
-              </h2>
-
               <div className="flex w-full justify-between">
                 {/* {
                   <ProgressItem
@@ -257,11 +253,7 @@ const MainContent = () => {
                   <div className="flex flex-col items-center gap-4">
                     <Progress.Circle
                       percent={((spent * 100.0) / spentLimit).toFixed(2)}
-                      status={
-                        ((spent * 100.0) / spentLimit).toFixed(2) < 100
-                          ? "active"
-                          : "fail"
-                      }
+                      status={"active"}
                       className="w-[8rem] text-white"
                     />
 
@@ -292,11 +284,7 @@ const MainContent = () => {
                   <div className="flex flex-col items-center gap-4">
                     <Progress.Circle
                       percent={((loanedTo * 100.0) / loanedToLimit).toFixed(2)}
-                      status={
-                        ((loanedTo * 100.0) / loanedToLimit).toFixed(2) < 100
-                          ? "active"
-                          : "fail"
-                      }
+                      status={"active"}
                       className="w-[8rem] text-white"
                     />
 
