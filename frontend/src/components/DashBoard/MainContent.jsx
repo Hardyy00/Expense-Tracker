@@ -22,9 +22,6 @@ import { LuSofa } from "react-icons/lu";
 import { GiCommercialAirplane } from "react-icons/gi";
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../../store/store";
-import { LuSofa } from "react-icons/lu";
-import { GiCommercialAirplane } from "react-icons/gi";
-
 
 const ariaLabel = { "aria-label": "description" };
 
@@ -41,7 +38,6 @@ const map = {
 };
 
 const iconsMap = {
-
   Rent: <FaHouseChimney className="w-full h-full" />,
   "Electric Bill": <MdElectricBolt className="w-full h-full" />,
   "Water Bill": <IoIosWater className="w-full h-full" />,
@@ -72,28 +68,8 @@ const MainContent = () => {
 
   const friends = expenses.filter((item) => item.friendName !== undefined);
 
-  Rent: <FaHouseChimney />,
-  "Electric Bill": <MdElectricBolt />,
-  "Water Bill": <IoIosWater />,
-  "Mobile Recharge": <FaMobileAlt />,
-  "Car Petrol": <FaCar />,
-  Shopping: <FaShoppingBag />,
-  Movie: <BiSolidCameraMovie />,
-  Food: <IoFastFoodOutline />,
-  Furniture: <LuSofa />,
-  Travel: <GiCommercialAirplane />,
-};
-
-const MainContent = () => {
-  const dispatch = useDisp;
-  const [category, setCategory] = useState("");
-  const [form, setForm] = useState({ title: "", amount: 0 });
-  const [subCategory, setSubCategory] = useState("");
-
-
   const submitHandler = (e) => {
     e.preventDefault();
-
 
     const data = {
       ...form,
@@ -123,19 +99,6 @@ const MainContent = () => {
     <div className="w-full h-full mt-8 flex flex-col gap-[4rem] ">
       <div className="flex justify-between">
         <div className="flex flex-col gap-[2rem] w-[55%]">
-
-    const data = { ...form, category, subCategory };
-
-    console.log(data);
-    setForm({ title: "", amount: 0 });
-    setCategory("");
-    setSubCategory("");
-  };
-  return (
-    <div className="w-full h-full mt-8 flex flex-col gap-[4rem]">
-      <div className="flex justify-between">
-        <div className="flex flex-col gap-[2rem] w-[50%]">
-
           <Card className="flex flex-col gap-[1.3rem]">
             <h2 className="heading">Overview</h2>
 
@@ -158,7 +121,6 @@ const MainContent = () => {
                 className="text-green-400"
               />
 
-
               <Item
                 amount={100}
                 title={"Loaned from Friend"}
@@ -167,15 +129,9 @@ const MainContent = () => {
             </div>
           </Card>
           <Card className="p-[8rem]">
-
-            </div>
-          </Card>
-          <Card>
-
             <h2 className="heading">Expense Statistics</h2>
           </Card>
         </div>
-
 
         {/* all  expenses will be shown here */}
         <Card className="w-[40%]">
@@ -199,15 +155,10 @@ const MainContent = () => {
               Show More
             </button>
           )}
-
-        <Card className="w-[45%]">
-          <h2 className="heading">Activities</h2>
-
         </Card>
       </div>
 
       <div className="flex w-full justify-between">
-
         <Card className="w-[60%] flex flex-col gap-4">
           <div className="flex gap-4 w-full items-center justify-between">
             {" "}
@@ -240,10 +191,6 @@ const MainContent = () => {
               </Select>
             </FormControl>
           </div>
-
-        <Card className="w-[55%] flex flex-col gap-4">
-          <h2 className="heading">Add Expense</h2>
-
 
           <div className="flex gap-4">
             <div className="w-[40%]">
@@ -283,7 +230,6 @@ const MainContent = () => {
             </div>
 
             <div className="flex flex-col w-[50%] gap-4">
-
               {type === "Spent" && (
                 <FormControl fullWidth>
                   <InputLabel
@@ -313,34 +259,6 @@ const MainContent = () => {
                 </FormControl>
               )}
 
-              <FormControl fullWidth>
-                <InputLabel
-                  id="demo-simple-select-label"
-                  style={{ color: "white" }}
-                >
-                  Category
-                </InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={category}
-                  label="Category"
-                  onChange={(event) => {
-                    setCategory(event.target.value);
-                  }}
-                  style={{ color: "aqua" }}
-                >
-                  <MenuItem value={"One Time Purchase"}>
-                    One Time Purchase
-                  </MenuItem>
-                  <MenuItem value={"Recurring Bill"}>Recurring Bill</MenuItem>
-                  <MenuItem value={"Miscellaneous Bill"}>
-                    Miscellaneous Bill
-                  </MenuItem>
-                </Select>
-              </FormControl>
-
-
               {/* input for miscellaneous bill as well as recurring bill */}
 
               {(category.toLowerCase() === "recurring bill" ||
@@ -362,11 +280,7 @@ const MainContent = () => {
                   >
                     {map[category.toLowerCase()]?.map((item, index) => (
                       <MenuItem value={item} key={index}>
-
                         {item}
-
-                        {item}{" "}
-
                       </MenuItem>
                     ))}
                   </Select>
@@ -387,7 +301,6 @@ const MainContent = () => {
                 />
               )}
 
-
               {(type === "Loaned to Friend" ||
                 type === "Loaned from Friend" ||
                 type === "Gave Back To" ||
@@ -403,11 +316,9 @@ const MainContent = () => {
                   onChange={(event) => setCategory(event.target.value)}
                 />
               )}
-
             </div>
           </div>
         </Card>
-
 
         <Card className="w-[35%] rounded-2xl">
           <h2 className="heading">Friends</h2>
@@ -423,10 +334,6 @@ const MainContent = () => {
               Show More
             </button>
           )}
-
-        <Card className="w-[40%]">
-          <h2 className="heading">Friends</h2>
-
         </Card>
       </div>
     </div>
@@ -526,6 +433,5 @@ const Friend = ({ expense }) => {
     </div>
   );
 };
-
 
 export default MainContent;
