@@ -55,7 +55,7 @@ const Login = () => {
                   <div className="w-full px-3">
                     <label
                       className="block text-gray-300 text-lg font-medium mb-1"
-                      htmlFor="email"
+                      htmlFor="username"
                     >
                       Username
                     </label>
