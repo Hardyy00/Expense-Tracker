@@ -63,7 +63,3 @@ exports.deleteUser = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
-
-exports.addExpense = async (req, res) => {
-  res.json({ message: "ok" });
-};

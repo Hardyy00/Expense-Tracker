@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const authController = require("../controllers/authController");
 const { upload } = require("../config/handleUpload");
-const UserController = require("../controllers/userController");
+const UserController = require('../controllers/userController');
 router.get("/", (req, res) => {
   res.send("hello");
 });
@@ -11,6 +11,5 @@ router.post(
   authController.register
 );
 router.get("/:userId", UserController.getUserById);
-router.post("/login", authController.login);
-router.post("/addExpense", UsersController.addExpense);
+router.post('/login', authController.login);
 module.exports = router;

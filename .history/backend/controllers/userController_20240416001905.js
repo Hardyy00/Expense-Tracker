@@ -64,6 +64,4 @@ exports.deleteUser = async (req, res) => {
   }
 };
 
-exports.addExpense = async (req, res) => {
-  res.json({ message: "ok" });
-};
+exports.addExpense = async (req, res) => {};
