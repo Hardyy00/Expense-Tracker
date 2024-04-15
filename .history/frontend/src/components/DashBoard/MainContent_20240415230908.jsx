@@ -57,6 +57,16 @@ const iconsMap = {
   Default: <SiTemporal className="w-full h-full" />,
 };
 
+const week = {
+  sunday: 0,
+  monday: 1,
+  tuesday: 2,
+  wednesday: 3,
+  thursday: 4,
+  friday: 5,
+  saturday: 6,
+};
+
 const MainContent = () => {
   // const expense = useSelector((state) => state.expenses);
   const dispatch = useDispatch();
@@ -71,16 +81,10 @@ const MainContent = () => {
   const [range, setRange] = useState("Week");
 
   let xaxis = [];
-  let yaxis = [];
+  let yaxis = [0, 0, 0, 0, 0, 0, 0];
 
   if (range === "Week") {
     xaxis = [1, 2, 3, 4, 5, 6, 7];
-    yaxis = [0, 0, 0, 0, 0, 0, 0];
-  }
-
-  if (range === "Month") {
-    xaxis = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-    yaxis = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   }
 
   let spent = 0,
@@ -138,11 +142,7 @@ const MainContent = () => {
     if (range === "Week") {
       const day = date.getDay();
 
-      yaxis[day] += item.amount;
-    }
-
-    if (range === "Month") {
-      yaxis[date.getMonth()] += item.amount;
+      console.log(day);
     }
   }
 
@@ -590,6 +590,7 @@ const MainContent = () => {
           >
             <MenuItem value={"Week"}>Week</MenuItem>
             <MenuItem value={"Month"}>Month</MenuItem>
+            <MenuItem value={"Year"}>Year</MenuItem>
           </Select>
         </FormControl>
         <LineChart

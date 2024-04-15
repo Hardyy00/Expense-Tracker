@@ -28,6 +28,9 @@ import { userActions } from "../../store/store";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { Progress } from "rsuite";
+import CanvasJSReact from "@canvasjs/react-charts";
+
+const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 const ariaLabel = { "aria-label": "description" };
 
@@ -58,7 +61,6 @@ const iconsMap = {
 };
 
 const MainContent = () => {
-  // const expense = useSelector((state) => state.expenses);
   const dispatch = useDispatch();
   const [category, setCategory] = useState("");
   const [form, setForm] = useState({
@@ -68,20 +70,6 @@ const MainContent = () => {
   });
   const [subCategory, setSubCategory] = useState("");
   const [type, setType] = useState("");
-  const [range, setRange] = useState("Week");
-
-  let xaxis = [];
-  let yaxis = [];
-
-  if (range === "Week") {
-    xaxis = [1, 2, 3, 4, 5, 6, 7];
-    yaxis = [0, 0, 0, 0, 0, 0, 0];
-  }
-
-  if (range === "Month") {
-    xaxis = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-    yaxis = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-  }
 
   let spent = 0,
     earned = 0,
@@ -132,18 +120,6 @@ const MainContent = () => {
       gaveBack += item.amount;
       gaveBackCount++;
     }
-
-    const date = new Date(item.date);
-
-    if (range === "Week") {
-      const day = date.getDay();
-
-      yaxis[day] += item.amount;
-    }
-
-    if (range === "Month") {
-      yaxis[date.getMonth()] += item.amount;
-    }
   }
 
   const submitHandler = (e) => {
@@ -175,6 +151,40 @@ const MainContent = () => {
     dispatch(userActions.addExpense(data));
   };
 
+  const options = {
+    animationEnabled: true,
+    title: {
+      text: "Monthly Sales - 2017",
+    },
+    axisX: {
+      valueFormatString: "MMM",
+    },
+    axisY: {
+      title: "Sales (in USD)",
+      prefix: "$",
+    },
+    data: [
+      {
+        yValueFormatString: "$#,###",
+        xValueFormatString: "MMMM",
+        type: "spline",
+        dataPoints: [
+          { x: new Date(2017, 0), y: 25060 },
+          { x: new Date(2017, 1), y: 27980 },
+          { x: new Date(2017, 2), y: 42800 },
+          { x: new Date(2017, 3), y: 32400 },
+          { x: new Date(2017, 4), y: 35260 },
+          { x: new Date(2017, 5), y: 33900 },
+          { x: new Date(2017, 6), y: 40000 },
+          { x: new Date(2017, 7), y: 52500 },
+          { x: new Date(2017, 8), y: 32300 },
+          { x: new Date(2017, 9), y: 42000 },
+          { x: new Date(2017, 10), y: 37160 },
+          { x: new Date(2017, 11), y: 38400 },
+        ],
+      },
+    ],
+  };
   return (
     <div className="w-full h-full mt-8 flex flex-col gap-[4rem] ">
       <div className="flex justify-between">
@@ -578,25 +588,26 @@ const MainContent = () => {
         </Card>
       </div>
 
-      <Card className="bg-green-400 w-[55%] flex flex-col">
-        <FormControl className="w-[10rem] self-end">
+      <Card className="bg-green-400">
+        <FormControl fullWidth>
           <InputLabel id="demo-simple-select-label">Age</InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={range}
-            label="Range"
-            onChange={(event) => setRange(event.target.value)}
+            value={age}
+            label="Age"
+            onChange={(event)=> }
           >
-            <MenuItem value={"Week"}>Week</MenuItem>
-            <MenuItem value={"Month"}>Month</MenuItem>
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>
           </Select>
         </FormControl>
         <LineChart
-          xAxis={[{ data: xaxis }]}
+          xAxis={[{ data: [1, 2, 3, 5, 8, 10] }]}
           series={[
             {
-              data: yaxis,
+              data: [2, 5.5, 2, 8.5, 1.5, 5],
             },
           ]}
           width={500}

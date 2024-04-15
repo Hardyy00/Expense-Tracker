@@ -70,17 +70,11 @@ const MainContent = () => {
   const [type, setType] = useState("");
   const [range, setRange] = useState("Week");
 
-  let xaxis = [];
+  let xaxis = ["", "", ""];
   let yaxis = [];
 
   if (range === "Week") {
     xaxis = [1, 2, 3, 4, 5, 6, 7];
-    yaxis = [0, 0, 0, 0, 0, 0, 0];
-  }
-
-  if (range === "Month") {
-    xaxis = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-    yaxis = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   }
 
   let spent = 0,
@@ -131,18 +125,6 @@ const MainContent = () => {
     } else {
       gaveBack += item.amount;
       gaveBackCount++;
-    }
-
-    const date = new Date(item.date);
-
-    if (range === "Week") {
-      const day = date.getDay();
-
-      yaxis[day] += item.amount;
-    }
-
-    if (range === "Month") {
-      yaxis[date.getMonth()] += item.amount;
     }
   }
 
@@ -590,13 +572,14 @@ const MainContent = () => {
           >
             <MenuItem value={"Week"}>Week</MenuItem>
             <MenuItem value={"Month"}>Month</MenuItem>
+            <MenuItem value={"Year"}>Year</MenuItem>
           </Select>
         </FormControl>
         <LineChart
-          xAxis={[{ data: xaxis }]}
+          xAxis={[{ data: [1, 2, 3, 4, 5, 6, 7] }]}
           series={[
             {
-              data: yaxis,
+              data: [2, 5.5, 2, 8.5, 1.5, 5],
             },
           ]}
           width={500}
