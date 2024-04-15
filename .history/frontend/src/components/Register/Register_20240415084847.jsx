@@ -192,11 +192,11 @@ const Register = () => {
                     <input
                       type="number"
                       id="annualIncome"
-                      name="annualIncome"
+                      name="proannualIncomefession"
                       value={formData.annualIncome}
                       onChange={handleChange}
                       className="form-input w-full text-gray-300 bg-transparent border-gray-400 border-b-2 focus:border-b-green-400 outline-none focus:outline-none"
-                      placeholder="Enter Annual Income"
+                      placeholder="Enter Name"
                       required
                     />
                   </div>

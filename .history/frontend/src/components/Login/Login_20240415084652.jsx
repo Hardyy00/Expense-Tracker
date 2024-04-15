@@ -86,7 +86,7 @@ const Login = () => {
                       name="password"
                       value={formData.password}
                       onChange={handleChange}
-                      className="form-input w-full text-gray-300 bg-transparent border-gray-400 border-b-2 focus:border-b-green-400 outline-none focus:outline-none"
+                      className="form-input w-full text-gray-300 bg-transparent border-b-2 border-gray-400 focus:border-white"
                       placeholder="Password (at least 10 characters)"
                       required
                     />

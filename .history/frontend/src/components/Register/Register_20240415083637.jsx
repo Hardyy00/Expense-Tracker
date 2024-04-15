@@ -87,7 +87,7 @@ const Register = () => {
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
-                      className="form-input w-full text-gray-300 bg-transparent bborder-gray-400 border-b-2 focus:border-b-green-400 outline-none focus:outline-none"
+                      className="form-input w-full text-gray-300 bg-transparent border-b-2 border-gray-400 focus:border-white"
                       placeholder="Enter Name"
                       required
                     />
@@ -108,7 +108,7 @@ const Register = () => {
                       name="password"
                       value={formData.password}
                       onChange={handleChange}
-                      className="form-input w-full text-gray-300 bg-transparent border-gray-400 border-b-2 focus:border-b-green-400 outline-none focus:outline-none"
+                      className="form-input w-full text-gray-300 bg-transparent border-b-2 border-gray-400 focus:border-white"
                       placeholder="Enter Password"
                       required
                     />
@@ -129,7 +129,7 @@ const Register = () => {
                       name="age"
                       value={formData.age}
                       onChange={handleChange}
-                      className="form-input w-full text-gray-300 bg-transparent border-gray-400 border-b-2 focus:border-b-green-400 outline-none focus:outline-none"
+                      className="form-input w-full text-gray-300 bg-transparent border-b-2 border-gray-400 focus:border-white"
                       placeholder="Enter Age"
                       required
                     />
@@ -149,7 +149,7 @@ const Register = () => {
                       name="gender"
                       value={formData.gender}
                       onChange={handleChange}
-                      className="form-input w-full text-gray bg-transparent border-gray-400 border-b-2 focus:border-b-green-400 outline-none focus:outline-none"
+                      className="form-input w-full text-gray bg-transparent border-b-2 border-gray-400 focus:border-white"
                       required
                     >
                       <option value="">Select Gender</option>
@@ -174,7 +174,7 @@ const Register = () => {
                       name="profession"
                       value={formData.profession}
                       onChange={handleChange}
-                      className="form-input w-full text-gray-300 bg-transparent border-gray-400 border-b-2 focus:border-b-green-400 outline-none focus:outline-none"
+                      className="form-input w-full text-gray-300 bg-transparent border-b-2 border-gray-400 focus:border-white"
                       placeholder="Enter Name"
                       required
                     />
@@ -192,11 +192,11 @@ const Register = () => {
                     <input
                       type="number"
                       id="annualIncome"
-                      name="annualIncome"
+                      name="proannualIncomefession"
                       value={formData.annualIncome}
                       onChange={handleChange}
-                      className="form-input w-full text-gray-300 bg-transparent border-gray-400 border-b-2 focus:border-b-green-400 outline-none focus:outline-none"
-                      placeholder="Enter Annual Income"
+                      className="form-input w-full text-gray-300 bg-transparent border-b-2 border-gray-400 focus:border-white"
+                      placeholder="Enter Name"
                       required
                     />
                   </div>
@@ -215,7 +215,7 @@ const Register = () => {
                       id="profilePhoto"
                       name="profilePhoto"
                       onChange={handleChangeImage}
-                      className="form-input w-full text-gray-300 bg-transparent border-gray-400 border-b-2 focus:border-b-green-400 outline-none focus:outline-none"
+                      className="form-input w-full text-gray-300 bg-transparent border-b-2 border-gray-400 focus:border-white"
                       placeholder="Enter Name"
                       required
                     />
@@ -236,7 +236,7 @@ const Register = () => {
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
-                      className="form-input w-full text-gray-300 bg-transparent border-gray-400 border-b-2 focus:border-b-green-400 outline-none focus:outline-none"
+                      className="form-input w-full text-gray-300 bg-transparent border-b-2 border-gray-400 focus:border-white"
                       placeholder="Enter Name"
                       required
                     />
@@ -258,7 +258,7 @@ const Register = () => {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="form-input w-full text-gray-300 bg-transparent border-gray-400 border-b-2 focus:border-b-green-400 outline-none focus:outline-none"
+                      className="form-input w-full text-gray-300 bg-transparent border-b-2 border-gray-400 focus:border-white"
                       placeholder="Enter Name"
                       required
                     />

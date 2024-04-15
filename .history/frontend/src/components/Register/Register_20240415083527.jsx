@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import { apiConnector } from "../../Operations/apiConnector";
 import { message } from "antd";
 const Register = () => {
@@ -87,7 +87,7 @@ const Register = () => {
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
-                      className="form-input w-full text-gray-300 bg-transparent bborder-gray-400 border-b-2 focus:border-b-green-400 outline-none focus:outline-none"
+                      className="form-input w-full text-gray-300 bg-transparent border-b-2 border-gray-400 focus:border-white"
                       placeholder="Enter Name"
                       required
                     />
@@ -108,7 +108,7 @@ const Register = () => {
                       name="password"
                       value={formData.password}
                       onChange={handleChange}
-                      className="form-input w-full text-gray-300 bg-transparent border-gray-400 border-b-2 focus:border-b-green-400 outline-none focus:outline-none"
+                      className="form-input w-full text-gray-300 bg-transparent border-b-2 border-gray-400 focus:border-white"
                       placeholder="Enter Password"
                       required
                     />
@@ -129,7 +129,7 @@ const Register = () => {
                       name="age"
                       value={formData.age}
                       onChange={handleChange}
-                      className="form-input w-full text-gray-300 bg-transparent border-gray-400 border-b-2 focus:border-b-green-400 outline-none focus:outline-none"
+                      className="form-input w-full text-gray-300 bg-transparent border-b-2 border-gray-400 focus:border-white"
                       placeholder="Enter Age"
                       required
                     />
@@ -149,7 +149,7 @@ const Register = () => {
                       name="gender"
                       value={formData.gender}
                       onChange={handleChange}
-                      className="form-input w-full text-gray bg-transparent border-gray-400 border-b-2 focus:border-b-green-400 outline-none focus:outline-none"
+                      className="form-input w-full text-gray bg-transparent border-b-2 border-gray-400 focus:border-white"
                       required
                     >
                       <option value="">Select Gender</option>
@@ -169,12 +169,12 @@ const Register = () => {
                       Profession <span className="text-red-600">*</span>
                     </label>
                     <input
-                      type="text"
-                      id="profession"
-                      name="profession"
-                      value={formData.profession}
-                      onChange={handleChange}
-                      className="form-input w-full text-gray-300 bg-transparent border-gray-400 border-b-2 focus:border-b-green-400 outline-none focus:outline-none"
+                    type="text"
+                    id="profession"
+                    name="profession"
+                    value={formData.profession}
+                    onChange={handleChange}
+                      className="form-input w-full text-gray-300 bg-transparent border-b-2 border-gray-400 focus:border-white"
                       placeholder="Enter Name"
                       required
                     />
@@ -190,13 +190,13 @@ const Register = () => {
                       Annual Income <span className="text-red-600">*</span>
                     </label>
                     <input
-                      type="number"
-                      id="annualIncome"
-                      name="annualIncome"
-                      value={formData.annualIncome}
-                      onChange={handleChange}
-                      className="form-input w-full text-gray-300 bg-transparent border-gray-400 border-b-2 focus:border-b-green-400 outline-none focus:outline-none"
-                      placeholder="Enter Annual Income"
+                    type="number"
+                    id="annualIncome"
+                    name="proannualIncomefession"
+                    value={formData.annualIncome}
+                    onChange={handleChange}
+                      className="form-input w-full text-gray-300 bg-transparent border-b-2 border-gray-400 focus:border-white"
+                      placeholder="Enter Name"
                       required
                     />
                   </div>
@@ -215,7 +215,7 @@ const Register = () => {
                       id="profilePhoto"
                       name="profilePhoto"
                       onChange={handleChangeImage}
-                      className="form-input w-full text-gray-300 bg-transparent border-gray-400 border-b-2 focus:border-b-green-400 outline-none focus:outline-none"
+                      className="form-input w-full text-gray-300 bg-transparent border-b-2 border-gray-400 focus:border-white"
                       placeholder="Enter Name"
                       required
                     />
@@ -231,40 +231,39 @@ const Register = () => {
                       Enter Email <span className="text-red-600">*</span>
                     </label>
                     <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      className="form-input w-full text-gray-300 bg-transparent border-gray-400 border-b-2 focus:border-b-green-400 outline-none focus:outline-none"
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                      className="form-input w-full text-gray-300 bg-transparent border-b-2 border-gray-400 focus:border-white"
                       placeholder="Enter Name"
                       required
                     />
                   </div>
                 </div>
-
+                
                 <div className="flex flex-wrap -mx-3 mb-4">
                   <div className="w-full px-3">
                     <label
                       className="block text-gray-300 text-sm font-medium mb-1"
                       htmlFor="phone"
                     >
-                      Enter Mobile Number{" "}
-                      <span className="text-red-600">*</span>
+                      Enter Mobile Number <span className="text-red-600">*</span>
                     </label>
                     <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      className="form-input w-full text-gray-300 bg-transparent border-gray-400 border-b-2 focus:border-b-green-400 outline-none focus:outline-none"
+                     type="tel"
+                     id="phone"
+                     name="phone"
+                     value={formData.phone}
+                     onChange={handleChange}
+                      className="form-input w-full text-gray-300 bg-transparent border-b-2 border-gray-400 focus:border-white"
                       placeholder="Enter Name"
                       required
                     />
                   </div>
                 </div>
-
+                
                 <div className="flex flex-wrap -mx-3 mt-6">
                   <div className="w-full px-3">
                     <button className="btn text-white bg-gradient-to-r from-purple-600 to-blue-600 hover:from-blue-600 hover:to-purple-600 w-full py-3 rounded-full transition duration-300 ease-in-out transform hover:scale-105">
