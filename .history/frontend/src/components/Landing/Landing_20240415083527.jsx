@@ -1,4 +1,4 @@
-import  { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { BsGraphUpArrow } from "react-icons/bs";
@@ -76,7 +76,7 @@ const Landing = () => {
         </div>
       </header>
 
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 mb-1">
+      <section max-w-6xl mx-auto px-4 sm:px-6 mb-1>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 relative">
           <div className="relative pt-20 pb-10 md:pt-32 md:pb-16">
             <div className="max-w-3xl mx-auto text-center pb-8 md:pb-12">

@@ -61,7 +61,7 @@ const SideBar = () => {
 
         <div className="flex flex-col gap-4">
           <NavLink
-            to="/dashboard"
+            to="/dashboard/"
             className={({ isActive }) =>
               isActive ? "text-[102%] flex" : "text-[#5d6383] flex"
             }

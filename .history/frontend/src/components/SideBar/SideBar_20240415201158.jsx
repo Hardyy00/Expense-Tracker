@@ -41,7 +41,7 @@ const SideBar = () => {
 
   return (
     <div className="bg-[#03071e] w-full h-full px-4 py-8 flex flex-col items-center justify-between">
-      <div className="flex flex-col gap-[10rem]">
+      <div>
         <div className="flex gap-4">
           <div className="w-[3rem] h-[3rem] bg-white rounded-full">
             <img
@@ -91,6 +91,7 @@ const SideBar = () => {
           </NavLink>
         </div>
       </div>
+      <div></div>
 
       <div>
         <button
