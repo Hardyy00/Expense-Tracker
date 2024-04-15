@@ -2,35 +2,41 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { BsGraphUpArrow } from "react-icons/bs";
-import {  FaTwitter,  FaGithub,  FaFacebook,  FaInstagram,  FaLinkedin,} from "react-icons/fa";
+import {
+  FaTwitter,
+  FaGithub,
+  FaFacebook,
+  FaInstagram,
+  FaLinkedin,
+} from "react-icons/fa";
 import { AiOutlineDollar } from "react-icons/ai";
 import { BsGraphUp } from "react-icons/bs";
 import { MdAccountBalanceWallet } from "react-icons/md";
 import { IoIosLogIn } from "react-icons/io";
 
 const Landing = () => {
-    const [menuActive, setMenuActive] = useState(false);
-    const [isLogined, setIsLogined] = useState(false);
-  
-    useEffect(() => {
-      if (Cookies.get("authToken")) {
-        setIsLogined(true);
-      }
-    }, []);
-  
-    const navigate = useNavigate();
-  
-    const toggleMenu = () => {
-      setMenuActive(!menuActive);
-    };
-  
-    const handleGetStartedClick = () => {
-      navigate("/register");
-    };
+  const [menuActive, setMenuActive] = useState(false);
+  const [isLogined, setIsLogined] = useState(false);
+
+  useEffect(() => {
+    if (Cookies.get("authToken")) {
+      setIsLogined(true);
+    }
+  }, []);
+
+  const navigate = useNavigate();
+
+  const toggleMenu = () => {
+    setMenuActive(!menuActive);
+  };
+
+  const handleGetStartedClick = () => {
+    navigate("/register");
+  };
   return (
     <div className="bg-[#101935] relative text-white w-full">
       <header className=" bg-[#0f131e] w-full z-30 sticky top-0 bg-blue shadow-md">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className=" mx-auto px-4 sm:px-6">
           <div className="flex items-center justify-between h-20">
             <div className="mr-4">
               <Link to="/" className="block" aria-label="Expense Tracker">
@@ -44,27 +50,26 @@ const Landing = () => {
             <nav className="hidden md:flex md:grow justify-end">
               <ul className="flex items-center">
                 <li>
-                <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded-full">
-              {isLogined ? (
-                <Link
-                  to="/dashboard"
-                  className="flex justify-center items-center gap-[10px]"
-                >
-                  <IoIosLogIn className="text-[1.5rem]" />
-                  My Account
-                </Link>
-              ) : (
-                <Link
-                  to="/login"
-                  className="flex justify-center items-center gap-[10px]"
-                >
-                  <IoIosLogIn className="text-[1.5rem]" />
-                  Login
-                </Link>
-              )}
-            </button>
+                  <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded-full">
+                    {isLogined ? (
+                      <Link
+                        to="/dashboard"
+                        className="flex justify-center items-center gap-[10px]"
+                      >
+                        <IoIosLogIn className="text-[1.5rem]" />
+                        My Account
+                      </Link>
+                    ) : (
+                      <Link
+                        to="/login"
+                        className="flex justify-center items-center gap-[10px]"
+                      >
+                        <IoIosLogIn className="text-[1.5rem]" />
+                        Login
+                      </Link>
+                    )}
+                  </button>
                 </li>
-                
               </ul>
             </nav>
           </div>
@@ -83,13 +88,15 @@ const Landing = () => {
                 expense tracker app. Manage your finances anytime, anywhere.
               </p>
               <div className="max-w-xs mx-auto sm:max-w-none sm:flex sm:justify-center">
-                <div>
-                  <Link
-                    to="/register"
-                    className="btn-sm text-white bg-black hover:bg-blue-700 ml-3 px-4 py-3"
-                  >
-                    Get Started
-                  </Link>
+                <div className="max-w-xs mx-auto sm:max-w-none sm:flex sm:justify-center">
+                  <div>
+                    <Link
+                      to="/register"
+                      className="btn-sm text-white bg-gradient-to-r from-purple-600 to-blue-600 hover:from-blue-600 hover:to-purple-600 ml-3 px-6 py-3 rounded-full transition duration-300 ease-in-out transform hover:scale-105"
+                    >
+                      Get Started
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
@@ -101,9 +108,7 @@ const Landing = () => {
         <div className="max-w-6xl mx-auto px-0 sm:px-6">
           <div className="py-12 md:py-20">
             <div className="max-w-3xl mx-auto text-center pb-12 md:pb-20">
-              <h2 className="text-4xl font-semibold mb-4">
-                Features
-              </h2>
+              <h2 className="text-4xl font-semibold mb-4">Features</h2>
               <p className="text-xl text-gray-400">
                 With our intuitive Expense Tracker app, managing your finances
                 has never been easier. Track your expenses, visualize your
@@ -112,7 +117,6 @@ const Landing = () => {
             </div>
 
             <div className="max-w-sm mx-auto grid gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-16 items-start md:max-w-2xl lg:max-w-none">
-            
               <div className="relative flex flex-col items-center">
                 <AiOutlineDollar className="w-16 h-16 mb-4 text-black-600" />
                 <h4 className="h4 mb-2">Expense Tracking</h4>
@@ -122,10 +126,7 @@ const Landing = () => {
                 </p>
               </div>
 
-            
-              <div
-                className="relative flex flex-col items-center"
-              >
+              <div className="relative flex flex-col items-center">
                 <BsGraphUp className="w-16 h-16 mb-4 text-black-600" />
                 <h4 className="h4 mb-2">Financial Insights</h4>
                 <p className="text-lg text-gray-400 text-center">
@@ -134,10 +135,7 @@ const Landing = () => {
                 </p>
               </div>
 
-             
-              <div
-                className="relative flex flex-col items-center"
-              >
+              <div className="relative flex flex-col items-center">
                 <MdAccountBalanceWallet className="w-16 h-16 mb-4 text-black-600" />
                 <h4 className="h4 mb-2">Budget Management</h4>
                 <p className="text-lg text-gray-400 text-center">
@@ -237,6 +235,6 @@ const Landing = () => {
       </footer>
     </div>
   );
-}
+};
 
 export default Landing;
