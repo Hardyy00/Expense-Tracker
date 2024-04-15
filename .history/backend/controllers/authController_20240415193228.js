@@ -72,7 +72,7 @@ async function login(req, res) {
 // Register function
 async function register(req, res) {
   // console.log("registerController",req.body);
-
+  console.log(req.body);
   const {
     username,
     password,
@@ -130,8 +130,6 @@ async function register(req, res) {
 
     // Save user to the database
     await user.save();
-    console.log(req.body);
-    console.log(user);
 
     // If registration is successful, also log in the user
     const token = jwt.sign(
@@ -146,7 +144,7 @@ async function register(req, res) {
       sameSite: "strict", // Set SameSite attribute
     });
 
-    res.status(200).json({ user });
+    res.status(200).send({ user });
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");

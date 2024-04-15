@@ -53,7 +53,7 @@ const Register = () => {
         "http://localhost:8000/register",
         formDataToSend
       );
-      if (res.data.user) {
+      if (res.data.success) {
         message.success("Register Successful");
         navigate("/login");
       } else {

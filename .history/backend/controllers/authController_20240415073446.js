@@ -21,14 +21,11 @@ const monthName = [
 async function login(req, res) {
   const { username, password } = req.body;
   // console.log("login krne pr re.body",req.body)
-
-  console.log(username, password);
+    
 
   try {
     // Find user by username
     const user = await User.findOne({ username });
-
-    console.log(user);
     // console.log("login se user=",user);
 
     // Check if user exists
@@ -72,9 +69,8 @@ async function login(req, res) {
 // Register function
 async function register(req, res) {
   // console.log("registerController",req.body);
-
+  console.log(req.body);
   const {
-    username,
     password,
     name,
     age,
@@ -85,22 +81,25 @@ async function register(req, res) {
     about,
     annualIncome,
   } = req.body;
-
-  let profilePhoto;
-
+  const userId = Date.now();
+  const username = name + userId.toString().slice(0, 5);
+    let profilePhoto;
+    const date = new Date();
+    const registrationMonth = monthName[date.getMonth()];
+    const registrationYear = date.getFullYear();
   try {
     //     // console.log("Request mai file:",req.file);
-    if (!req.file) {
-      profilePhoto =
-        "https://img.freepik.com/premium-vector/user-profile-icon-flat-style-member-avatar-vector-illustration-isolated-background-human-permission-sign-business-concept_157943-15752.jpg";
-    } else {
-      const b64 = req.file.buffer.toString("base64");
-      const dataURI = `data:${req.file.mimetype};base64,${b64}`;
+   if (!req.file) {
+     profilePhoto =
+       "https://img.freepik.com/premium-vector/user-profile-icon-flat-style-member-avatar-vector-illustration-isolated-background-human-permission-sign-business-concept_157943-15752.jpg";
+   } else {
+     const b64 = req.file.buffer.toString("base64");
+     const dataURI = `data:${req.file.mimetype};base64,${b64}`;
 
-      // Upload the image to Cloudinary
-      const cldRes = await handleUpload(dataURI);
-      profilePhoto = cldRes.url;
-    }
+     // Upload the image to Cloudinary
+     const cldRes = await handleUpload(dataURI);
+     profilePhoto = cldRes.url;
+   }
     //   console.log(req.file);
     let user = await User.findOne({ username });
     if (user) {
@@ -111,6 +110,7 @@ async function register(req, res) {
 
     // Create new user instance
     user = new User({
+      userId,
       username,
       password,
       name,
@@ -121,7 +121,9 @@ async function register(req, res) {
       email,
       phone,
       about,
-      annualIncome,
+        annualIncome,
+        registrationMonth,
+      registrationYear
     });
 
     // Hash password
@@ -130,8 +132,6 @@ async function register(req, res) {
 
     // Save user to the database
     await user.save();
-    console.log(req.body);
-    console.log(user);
 
     // If registration is successful, also log in the user
     const token = jwt.sign(
@@ -146,7 +146,7 @@ async function register(req, res) {
       sameSite: "strict", // Set SameSite attribute
     });
 
-    res.status(200).json({ user });
+    res.send({ success: true, message: "User Registered" });
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");

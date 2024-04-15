@@ -130,7 +130,7 @@ async function register(req, res) {
 
     // Save user to the database
     await user.save();
-    console.log(req.body);
+
     console.log(user);
 
     // If registration is successful, also log in the user

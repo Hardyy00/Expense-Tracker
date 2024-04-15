@@ -45,7 +45,6 @@ const Register = () => {
       formDataToSend.append("profilePhoto", formData.profilePhoto);
       formDataToSend.append("email", formData.email);
       formDataToSend.append("phone", formData.phone);
-      formDataToSend.append("username", formData.username);
       console.log(formDataToSend);
 
       const res = await apiConnector(
@@ -53,7 +52,7 @@ const Register = () => {
         "http://localhost:8000/register",
         formDataToSend
       );
-      if (res.data.user) {
+      if (res.data.success) {
         message.success("Register Successful");
         navigate("/login");
       } else {
@@ -96,7 +95,7 @@ const Register = () => {
                   </div>
                 </div>
 
-                <div className="w-full mb-3">
+                <div className="w-full px-3">
                   <label
                     className="block text-gray-300 text-sm font-medium mb-1"
                     htmlFor="username"

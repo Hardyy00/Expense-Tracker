@@ -5,7 +5,6 @@ import { message } from "antd";
 const Register = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    username: "",
     password: "",
     name: "",
     age: "",
@@ -45,7 +44,6 @@ const Register = () => {
       formDataToSend.append("profilePhoto", formData.profilePhoto);
       formDataToSend.append("email", formData.email);
       formDataToSend.append("phone", formData.phone);
-      formDataToSend.append("username", formData.username);
       console.log(formDataToSend);
 
       const res = await apiConnector(
@@ -53,7 +51,7 @@ const Register = () => {
         "http://localhost:8000/register",
         formDataToSend
       );
-      if (res.data.user) {
+      if (res.data.success) {
         message.success("Register Successful");
         navigate("/login");
       } else {
@@ -89,30 +87,11 @@ const Register = () => {
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
-                      className="form-input w-full text-gray-300 bg-transparent border-gray-400 border-b-2 focus:border-b-green-400 outline-none focus:outline-none"
+                      className="form-input w-full text-gray-300 bg-transparent bborder-gray-400 border-b-2 focus:border-b-green-400 outline-none focus:outline-none"
                       placeholder="Enter Name"
                       required
                     />
                   </div>
-                </div>
-
-                <div className="w-full mb-3">
-                  <label
-                    className="block text-gray-300 text-sm font-medium mb-1"
-                    htmlFor="username"
-                  >
-                    User Name<span className="text-red-600">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    id="username"
-                    name="username"
-                    value={formData.username}
-                    onChange={handleChange}
-                    className="form-input w-full text-gray-300 bg-transparent border-gray-400 border-b-2 focus:border-b-green-400 outline-none focus:outline-none"
-                    placeholder="Enter Username"
-                    required
-                  />
                 </div>
 
                 <div className="flex flex-wrap -mx-3 mb-4">
