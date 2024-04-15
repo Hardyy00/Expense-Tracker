@@ -28,6 +28,9 @@ import { userActions } from "../../store/store";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { Progress } from "rsuite";
+import CanvasJSReact from "@canvasjs/react-charts";
+
+const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 const ariaLabel = { "aria-label": "description" };
 
@@ -58,7 +61,7 @@ const iconsMap = {
 };
 
 const MainContent = () => {
-  // const expense = useSelector((state) => state.expenses);
+  const expense = useSelector((state) => state.expenses);
   const dispatch = useDispatch();
   const [category, setCategory] = useState("");
   const [form, setForm] = useState({
@@ -74,13 +77,7 @@ const MainContent = () => {
   let yaxis = [];
 
   if (range === "Week") {
-    xaxis = [1, 2, 3, 4, 5, 6, 7];
-    yaxis = [0, 0, 0, 0, 0, 0, 0];
-  }
-
-  if (range === "Month") {
-    xaxis = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-    yaxis = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    xaxis = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
   }
 
   let spent = 0,
@@ -131,18 +128,6 @@ const MainContent = () => {
     } else {
       gaveBack += item.amount;
       gaveBackCount++;
-    }
-
-    const date = new Date(item.date);
-
-    if (range === "Week") {
-      const day = date.getDay();
-
-      yaxis[day] += item.amount;
-    }
-
-    if (range === "Month") {
-      yaxis[date.getMonth()] += item.amount;
     }
   }
 
@@ -590,13 +575,14 @@ const MainContent = () => {
           >
             <MenuItem value={"Week"}>Week</MenuItem>
             <MenuItem value={"Month"}>Month</MenuItem>
+            <MenuItem value={"Year"}>Year</MenuItem>
           </Select>
         </FormControl>
         <LineChart
-          xAxis={[{ data: xaxis }]}
+          xAxis={[{ data: [1, 2, 3, 5, 8, 10] }]}
           series={[
             {
-              data: yaxis,
+              data: [2, 5.5, 2, 8.5, 1.5, 5],
             },
           ]}
           width={500}

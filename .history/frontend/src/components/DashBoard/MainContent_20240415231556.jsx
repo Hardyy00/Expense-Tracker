@@ -590,6 +590,7 @@ const MainContent = () => {
           >
             <MenuItem value={"Week"}>Week</MenuItem>
             <MenuItem value={"Month"}>Month</MenuItem>
+            <MenuItem value={"Year"}>Year</MenuItem>
           </Select>
         </FormControl>
         <LineChart

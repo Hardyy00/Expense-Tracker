@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import dayjs from "dayjs";
 import { DatePicker } from "@mui/x-date-pickers";
-import { LineChart, PieChart, pieArcLabelClasses } from "@mui/x-charts";
+import { PieChart, pieArcLabelClasses } from "@mui/x-charts";
 import Card from "../../UI/Card";
 import { useState } from "react";
 import Input from "@mui/material/Input";
@@ -58,7 +58,6 @@ const iconsMap = {
 };
 
 const MainContent = () => {
-  // const expense = useSelector((state) => state.expenses);
   const dispatch = useDispatch();
   const [category, setCategory] = useState("");
   const [form, setForm] = useState({
@@ -68,20 +67,6 @@ const MainContent = () => {
   });
   const [subCategory, setSubCategory] = useState("");
   const [type, setType] = useState("");
-  const [range, setRange] = useState("Week");
-
-  let xaxis = [];
-  let yaxis = [];
-
-  if (range === "Week") {
-    xaxis = [1, 2, 3, 4, 5, 6, 7];
-    yaxis = [0, 0, 0, 0, 0, 0, 0];
-  }
-
-  if (range === "Month") {
-    xaxis = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-    yaxis = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-  }
 
   let spent = 0,
     earned = 0,
@@ -132,18 +117,6 @@ const MainContent = () => {
       gaveBack += item.amount;
       gaveBackCount++;
     }
-
-    const date = new Date(item.date);
-
-    if (range === "Week") {
-      const day = date.getDay();
-
-      yaxis[day] += item.amount;
-    }
-
-    if (range === "Month") {
-      yaxis[date.getMonth()] += item.amount;
-    }
   }
 
   const submitHandler = (e) => {
@@ -156,6 +129,8 @@ const MainContent = () => {
       type,
       date: new Date(form.date).toLocaleString(),
     };
+
+    console.log(data);
 
     if (
       type === "Loaned to Friend" ||
@@ -174,7 +149,6 @@ const MainContent = () => {
 
     dispatch(userActions.addExpense(data));
   };
-
   return (
     <div className="w-full h-full mt-8 flex flex-col gap-[4rem] ">
       <div className="flex justify-between">
@@ -578,31 +552,7 @@ const MainContent = () => {
         </Card>
       </div>
 
-      <Card className="bg-green-400 w-[55%] flex flex-col">
-        <FormControl className="w-[10rem] self-end">
-          <InputLabel id="demo-simple-select-label">Age</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={range}
-            label="Range"
-            onChange={(event) => setRange(event.target.value)}
-          >
-            <MenuItem value={"Week"}>Week</MenuItem>
-            <MenuItem value={"Month"}>Month</MenuItem>
-          </Select>
-        </FormControl>
-        <LineChart
-          xAxis={[{ data: xaxis }]}
-          series={[
-            {
-              data: yaxis,
-            },
-          ]}
-          width={500}
-          height={300}
-        />
-      </Card>
+      <Card> </Card>
     </div>
   );
 };
