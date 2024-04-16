@@ -20,7 +20,10 @@ const Landing = () => {
   const dispatch = useDispatch();
   // const [menuActive, setMenuActive] = useState(false);
 
-  let isLogined = useSelector((state) => state !== null);
+  let isLogined = useSelector((state) => {
+    console.log(state);
+    return state;
+  });
 
   useEffect(() => {
     if (Cookies.get("authToken")) {

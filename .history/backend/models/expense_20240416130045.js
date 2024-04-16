@@ -22,7 +22,7 @@ const expenseSchema = new mongoose.Schema({
     type: String,
   },
 
-  subCategory: {
+  subcategory: {
     type: String,
   },
 
@@ -43,6 +43,6 @@ const expenseSchema = new mongoose.Schema({
   },
 });
 
-const Expense = mongoose.model("Expense", expenseSchema);
+const Expense = mongoose.model("Expenses", expenseSchema);
 
 module.exports = Expense;

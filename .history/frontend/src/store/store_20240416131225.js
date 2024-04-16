@@ -28,16 +28,15 @@ const store = configureStore({ reducer: userSlice.reducer });
 
 export const addExpense = (expense, id) => {
   return async (dispatch) => {
-    console.log("Expense data : ", expense);
     const response = await apiConnector(
       "post",
       `http://localhost:8000/addExpense/${id}`,
-      expense
+      JSON.stringify(expense)
     );
 
     console.log(response.data);
 
-    dispatch(userSlice.actions.addExpense(response.data.expense));
+    dispatch(response.data.expense);
   };
 };
 

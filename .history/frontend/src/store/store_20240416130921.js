@@ -1,5 +1,4 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
-import { apiConnector } from "../Operations/apiConnector";
 
 const userSlice = createSlice({
   name: "User",
@@ -26,20 +25,14 @@ const userSlice = createSlice({
 
 const store = configureStore({ reducer: userSlice.reducer });
 
-export const addExpense = (expense, id) => {
-  return async (dispatch) => {
-    console.log("Expense data : ", expense);
-    const response = await apiConnector(
-      "post",
-      `http://localhost:8000/addExpense/${id}`,
-      expense
-    );
 
-    console.log(response.data);
+export const addExpense = (expense)=>{
 
-    dispatch(userSlice.actions.addExpense(response.data.expense));
-  };
-};
+  return async (dispatch)=>{
+
+    const response = await 
+  }
+}
 
 export default store;
 export const userActions = userSlice.actions;

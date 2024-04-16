@@ -28,6 +28,9 @@ async function login(req, res) {
     // Find user by username
     const user = await User.findOne({ username });
 
+    console.log(user);
+    // console.log("login se user=",user);
+
     // Check if user exists
     if (!user) {
       return res
@@ -55,8 +58,6 @@ async function login(req, res) {
       secure: process.env.NODE_ENV === "production", // Set secure flag based on environment
       sameSite: "strict", // Set SameSite attribute
     };
-
-    user.populate("expenses");
 
     const doc = user._doc;
 

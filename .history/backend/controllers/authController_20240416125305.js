@@ -28,6 +28,9 @@ async function login(req, res) {
     // Find user by username
     const user = await User.findOne({ username });
 
+    console.log(user);
+    // console.log("login se user=",user);
+
     // Check if user exists
     if (!user) {
       return res
@@ -56,14 +59,12 @@ async function login(req, res) {
       sameSite: "strict", // Set SameSite attribute
     };
 
-    user.populate("expenses");
-
     const doc = user._doc;
 
     return res
       .cookie("token", token, options)
       .status(200)
-      .json({ user: doc, success: true });
+      .json({ user, success: true });
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");

@@ -20,8 +20,6 @@ const Landing = () => {
   const dispatch = useDispatch();
   // const [menuActive, setMenuActive] = useState(false);
 
-  let isLogined = useSelector((state) => state !== null);
-
   useEffect(() => {
     if (Cookies.get("authToken")) {
       const fetchUserDetails = async () => {
@@ -33,7 +31,6 @@ const Landing = () => {
 
           // console.log(response.data);
           dispatch(userActions.setUser(response.data)); // Assuming the response contains user data
-
           // message.success('User Fetched Successfully');
         } catch (error) {
           console.error("Error fetching user:", error);
@@ -43,6 +40,12 @@ const Landing = () => {
       fetchUserDetails(); // Fetch user details when the component mounts
     }
   }, []);
+
+  const isLogined = useSelector((state) => {
+    return { ...state };
+  });
+
+  console.log(isLogined);
 
   // const navigate = useNavigate();
 

@@ -1,12 +1,16 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
-import { apiConnector } from "../Operations/apiConnector";
 
 const userSlice = createSlice({
   name: "User",
-  initialState: null,
+  initialState: {
+    expenses: [],
+    spentLimit: 1000,
+    loanedFromLimit: 1000,
+    loanedToLimit: 1000,
+  },
   reducers: {
     setUser(state, action) {
-      return action.payload;
+      state = action.payload;
     },
     addExpense(state, action) {
       state.expenses = [action.payload, ...state.expenses];
@@ -25,21 +29,6 @@ const userSlice = createSlice({
 });
 
 const store = configureStore({ reducer: userSlice.reducer });
-
-export const addExpense = (expense, id) => {
-  return async (dispatch) => {
-    console.log("Expense data : ", expense);
-    const response = await apiConnector(
-      "post",
-      `http://localhost:8000/addExpense/${id}`,
-      expense
-    );
-
-    console.log(response.data);
-
-    dispatch(userSlice.actions.addExpense(response.data.expense));
-  };
-};
 
 export default store;
 export const userActions = userSlice.actions;

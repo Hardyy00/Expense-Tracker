@@ -13,8 +13,8 @@ const registerSchema = new mongoose.Schema(
     phone: { type: String },
     profession: { type: String, default: "Other" },
     annualIncome: { type: Number, required: true },
-    expenses: [{ type: mongoose.Schema.Types.ObjectId, ref: "Expense" }],
-    spentLimit: {
+    expenses: [{ type: mongoose.Schema.Types.ObjectId, ref: "Expenses" }],
+    spendLimit: {
       type: Number,
       default: 1000,
     },
@@ -23,7 +23,7 @@ const registerSchema = new mongoose.Schema(
       type: Number,
       default: 1000,
     },
-    loanedToLimit: {
+    loanedFromLimit: {
       type: Number,
       default: 1000,
     },
@@ -31,4 +31,4 @@ const registerSchema = new mongoose.Schema(
   { timestamps: true }
 ); // Adding timestamps true
 
-module.exports = mongoose.model("User", registerSchema);
+module.exports = mongoose.model("user", registerSchema);

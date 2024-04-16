@@ -14,7 +14,7 @@ const registerSchema = new mongoose.Schema(
     profession: { type: String, default: "Other" },
     annualIncome: { type: Number, required: true },
     expenses: [{ type: mongoose.Schema.Types.ObjectId, ref: "Expense" }],
-    spentLimit: {
+    spendLimit: {
       type: Number,
       default: 1000,
     },

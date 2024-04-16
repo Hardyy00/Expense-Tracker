@@ -32,7 +32,7 @@ export const addExpense = (expense, id) => {
     const response = await apiConnector(
       "post",
       `http://localhost:8000/addExpense/${id}`,
-      expense
+      JSON.stringify(expense)
     );
 
     console.log(response.data);

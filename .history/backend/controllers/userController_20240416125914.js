@@ -76,8 +76,6 @@ exports.addExpense = async (req, res) => {
 
     const expense = new Expense(req.body);
 
-    console.log(expense);
-
     expense.userId = id;
 
     await expense.save();

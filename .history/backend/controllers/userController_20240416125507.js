@@ -28,8 +28,8 @@ exports.getUsers = async (req, res) => {
 
 exports.getUserById = async (req, res) => {
   try {
-    const user = await User.findById(req.params.userId).populate("expenses");
-    console.log(user);
+    const user = await User.findById(req.params.userId);
+    // console.log(user);
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
@@ -75,8 +75,6 @@ exports.addExpense = async (req, res) => {
     }
 
     const expense = new Expense(req.body);
-
-    console.log(expense);
 
     expense.userId = id;
 

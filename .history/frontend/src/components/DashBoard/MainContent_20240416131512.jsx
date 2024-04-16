@@ -174,7 +174,7 @@ const MainContent = () => {
     setSubCategory("");
     setType("");
 
-    dispatch(addExpense(data, id));
+    dispatch(addExpense(data));
   };
 
   return (

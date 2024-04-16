@@ -285,7 +285,7 @@ const MainContent = () => {
                 } */}
 
                 {spentLimit > 0 && (
-                  <div className="flex flex-col items-center gap-4">
+                  <div className="flex flex-col items-center">
                     <Progress.Circle
                       percent={((spent * 100.0) / spentLimit).toFixed(2)}
                       status={

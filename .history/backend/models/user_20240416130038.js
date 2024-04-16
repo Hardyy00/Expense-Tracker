@@ -13,8 +13,8 @@ const registerSchema = new mongoose.Schema(
     phone: { type: String },
     profession: { type: String, default: "Other" },
     annualIncome: { type: Number, required: true },
-    expenses: [{ type: mongoose.Schema.Types.ObjectId, ref: "Expense" }],
-    spentLimit: {
+    expenses: [{ type: mongoose.Schema.Types.ObjectId, ref: "Expenses" }],
+    spendLimit: {
       type: Number,
       default: 1000,
     },

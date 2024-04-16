@@ -97,8 +97,6 @@ const MainContent = () => {
     gaveBackCount = 0,
     gotFromCount = 0;
 
-  const id = useSelector((state) => state._id);
-
   let expenses = useSelector((state) => state.expenses);
   const length = expenses.length;
 
@@ -174,7 +172,7 @@ const MainContent = () => {
     setSubCategory("");
     setType("");
 
-    dispatch(addExpense(data, id));
+    dispatch(addExpense(data));
   };
 
   return (

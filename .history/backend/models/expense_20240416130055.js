@@ -22,7 +22,7 @@ const expenseSchema = new mongoose.Schema({
     type: String,
   },
 
-  subCategory: {
+  subcategory: {
     type: String,
   },
 

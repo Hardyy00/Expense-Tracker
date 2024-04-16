@@ -20,7 +20,7 @@ const Landing = () => {
   const dispatch = useDispatch();
   // const [menuActive, setMenuActive] = useState(false);
 
-  let isLogined = useSelector((state) => state !== null);
+  const isLogined = useSelector((state) => state !== null);
 
   useEffect(() => {
     if (Cookies.get("authToken")) {
@@ -31,9 +31,7 @@ const Landing = () => {
             `http://localhost:8000/${Cookies.get("loginedUser")}`
           );
 
-          // console.log(response.data);
           dispatch(userActions.setUser(response.data)); // Assuming the response contains user data
-
           // message.success('User Fetched Successfully');
         } catch (error) {
           console.error("Error fetching user:", error);

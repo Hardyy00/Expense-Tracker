@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { BsGraphUpArrow } from "react-icons/bs";
 import {
@@ -13,46 +13,26 @@ import { AiOutlineDollar } from "react-icons/ai";
 import { BsGraphUp } from "react-icons/bs";
 import { MdAccountBalanceWallet } from "react-icons/md";
 import { IoIosLogIn } from "react-icons/io";
-import { useDispatch, useSelector } from "react-redux";
-import { apiConnector } from "../../Operations/apiConnector";
-import { userActions } from "../../store/store";
-const Landing = () => {
-  const dispatch = useDispatch();
-  // const [menuActive, setMenuActive] = useState(false);
 
-  let isLogined = useSelector((state) => state !== null);
+const Landing = () => {
+  const [menuActive, setMenuActive] = useState(false);
+
+  const isLogined = useSelector((state) => state !== null);
 
   useEffect(() => {
     if (Cookies.get("authToken")) {
-      const fetchUserDetails = async () => {
-        try {
-          const response = await apiConnector(
-            "get",
-            `http://localhost:8000/${Cookies.get("loginedUser")}`
-          );
-
-          // console.log(response.data);
-          dispatch(userActions.setUser(response.data)); // Assuming the response contains user data
-
-          // message.success('User Fetched Successfully');
-        } catch (error) {
-          console.error("Error fetching user:", error);
-        }
-      };
-
-      fetchUserDetails(); // Fetch user details when the component mounts
     }
   }, []);
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  // const toggleMenu = () => {
-  //   setMenuActive(!menuActive);
-  // };
+  const toggleMenu = () => {
+    setMenuActive(!menuActive);
+  };
 
-  // const handleGetStartedClick = () => {
-  //   navigate("/register");
-  // };
+  const handleGetStartedClick = () => {
+    navigate("/register");
+  };
   return (
     <div className="bg-[#101935] relative text-white w-full">
       <header className=" bg-[#0f131e] w-full z-30 sticky top-0 bg-blue shadow-md">
