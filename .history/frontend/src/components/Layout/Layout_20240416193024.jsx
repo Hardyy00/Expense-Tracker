@@ -11,6 +11,7 @@ const Layout = () => {
 
   const isPresent = useSelector((state) => state !== null);
   useEffect(() => {
+    console.log("executed");
     if (Cookies.get("authToken") && !isPresent) {
       const fetchUserDetails = async () => {
         try {

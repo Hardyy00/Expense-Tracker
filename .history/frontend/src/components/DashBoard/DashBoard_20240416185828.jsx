@@ -8,31 +8,20 @@ import { Button } from "@mui/material";
 import { useState } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-import { useSelector } from "react-redux";
-
 const style = {
   position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 600,
-  bgcolor: "#1e2d58",
-  borderRadius: "14px",
-
+  width: 400,
+  bgcolor: "black",
+  border: "2px solid #000",
   boxShadow: 24,
   p: 4,
 };
 const DashBoard = () => {
   const [open, setOpen] = useState(false);
   const [openModal, setOpenModal] = useState(false);
-
-  const notifications = useSelector((state) => {
-    if (!state) {
-      return [];
-    }
-
-    return state.notifications;
-  });
   return (
     <div className="px-7 py-4">
       <Modal
@@ -41,13 +30,7 @@ const DashBoard = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
-          {notifications.length == 0 && (
-            <h2 className="text-white text-[110%] text-center">
-              No notifications to display
-            </h2>
-          )}
-        </Box>
+        <Box sx={style}></Box>
       </Modal>
       <Drawer anchor="top" open={open} onClose={() => setOpen(false)}>
         <div className="bg-[#19264d] p-8">
@@ -83,11 +66,7 @@ const DashBoard = () => {
               className="text-green text-[2rem] cursor-pointer"
               onClick={() => setOpenModal(true)}
             />
-            <div
-              className={`w-2 h-2 rounded-full bg-red-400 absolute top-0 right-0 animate-ping ${
-                notifications.length == 0 && "hidden"
-              }`}
-            ></div>
+            <div className="w-2 h-2 rounded-full bg-red-400 absolute top-0 right-0 animate-ping"></div>
           </div>
 
           <IoIosMail className="text-[2rem]" />

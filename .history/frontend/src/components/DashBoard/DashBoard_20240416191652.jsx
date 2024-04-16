@@ -5,11 +5,10 @@ import MainContent from "./MainContent";
 import LimitTaker from "./LimitTaker";
 import Drawer from "@mui/material/Drawer";
 import { Button } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { useSelector } from "react-redux";
-
 const style = {
   position: "absolute",
   top: "50%",
@@ -25,14 +24,29 @@ const style = {
 const DashBoard = () => {
   const [open, setOpen] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+  useEffect(() => {
+    if (Cookies.get("authToken")) {
+      const fetchUserDetails = async () => {
+        try {
+          const response = await apiConnector(
+            "get",
+            `http://localhost:8000/${Cookies.get("loginedUser")}`
+          );
 
-  const notifications = useSelector((state) => {
-    if (!state) {
-      return [];
+          // console.log(response.data);
+          dispatch(userActions.setUser(response.data)); // Assuming the response contains user data
+
+          // message.success('User Fetched Successfully');
+        } catch (error) {
+          console.error("Error fetching user:", error);
+        }
+      };
+
+      fetchUserDetails(); // Fetch user details when the component mounts
     }
+  }, []);
 
-    return state.notifications;
-  });
+  const notifications = useSelector((state) => state.activeNotifications);
   return (
     <div className="px-7 py-4">
       <Modal
