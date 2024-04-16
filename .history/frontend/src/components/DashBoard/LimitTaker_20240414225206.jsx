@@ -1,14 +1,12 @@
 import { Button, Input } from "@mui/material";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setLimit } from "../../store/store";
+import { userActions } from "../../store/store";
 
 // eslint-disable-next-line react/prop-types
 const LimitTaker = ({ label }) => {
   const dispatch = useDispatch();
   const inputRef = useRef(null);
-
-  const id = useSelector((state) => state._id);
 
   const value = useSelector((state) => {
     if (label === "Spending Limit") {
@@ -32,7 +30,12 @@ const LimitTaker = ({ label }) => {
       limitType = "loaned to";
     }
 
-    dispatch(setLimit(inputRef.current.value, limitType, id));
+    dispatch(
+      userActions.setLimit({
+        limitType,
+        amount: +inputRef.current.value,
+      })
+    );
   };
   return (
     <form onSubmit={submitHandler} className="flex flex-col gap-4 items-center">
