@@ -11,6 +11,7 @@ const Layout = () => {
 
   const isPresent = useSelector((state) => state !== null);
   useEffect(() => {
+    console.log("executed");
     if (Cookies.get("authToken") && !isPresent) {
       const fetchUserDetails = async () => {
         try {
@@ -46,11 +47,7 @@ const Layout = () => {
           </>
         )}
 
-        {!isPresent && (
-          <h1 className="w-full h-[100vh] flex items-center justify-center text-[5rem]">
-            Please Wait...
-          </h1>
-        )}
+        {!isPresent && <h1 className="w-full h-[100vh] p-auto">Please Wait</h1>}
       </div>
     </div>
   );

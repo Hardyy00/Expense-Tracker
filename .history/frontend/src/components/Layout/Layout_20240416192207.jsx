@@ -34,23 +34,13 @@ const Layout = () => {
   return (
     <div className="bg-[#101935] relative text-white w-full">
       <div className="flex">
-        {isPresent && (
-          <>
-            <div className="w-[15%]">
-              <SideBar />
-            </div>
+        <div className="w-[15%]">
+          <SideBar />
+        </div>
 
-            <div className="w-[85%] ">
-              <Outlet />
-            </div>
-          </>
-        )}
-
-        {!isPresent && (
-          <h1 className="w-full h-[100vh] flex items-center justify-center text-[5rem]">
-            Please Wait...
-          </h1>
-        )}
+        <div className="w-[85%] ">
+          <Outlet />
+        </div>
       </div>
     </div>
   );
