@@ -18,7 +18,6 @@ const style = {
   width: 600,
   bgcolor: "#1e2d58",
   borderRadius: "14px",
-
   boxShadow: 24,
   p: 4,
 };
@@ -27,12 +26,13 @@ const DashBoard = () => {
   const [openModal, setOpenModal] = useState(false);
 
   const notifications = useSelector((state) => {
-    if (!state) {
+    if (!state || !state.notifications) {
       return [];
     }
 
     return state.notifications;
   });
+
   return (
     <div className="px-7 py-4">
       <Modal
