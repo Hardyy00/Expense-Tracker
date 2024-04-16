@@ -47,7 +47,6 @@ export const setLimit = (amount, type, id) => {
     );
 
     if (response.data.success) {
-      dispatch(userActions.setLimit({ limitType: type, amount }));
     }
   };
 };

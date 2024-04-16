@@ -1,7 +1,7 @@
 import { Button, Input } from "@mui/material";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setLimit } from "../../store/store";
+import { setLimit, userActions } from "../../store/store";
 
 // eslint-disable-next-line react/prop-types
 const LimitTaker = ({ label }) => {

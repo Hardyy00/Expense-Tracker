@@ -90,23 +90,21 @@ exports.addExpense = async (req, res) => {
   }
 };
 
-exports.setLimit = async (req, res) => {
-  const { id } = req.params;
+exports.setLimit = (req, res) => {
+  const {id} = req.params;
   const { amount, type } = req.body;
 
-  try {
+  try{
+
     const user = await User.findById(id);
+    
+    if(type==='spent'){
+      await user.updateOne({$set : { spentLimit : amount}})
+    }else if(type==='loaned from'){
+      await user.updateOne({$set : { loanedFromLimit : amount}})
+    }else{
 
-    if (type === "spent") {
-      await user.updateOne({ $set: { spentLimit: amount } });
-    } else if (type === "loaned from") {
-      await user.updateOne({ $set: { loanedFromLimit: amount } });
-    } else {
-      await user.updateOne({ $set: { loanedToLimit: amount } });
+      await user.updateOne({$set : {loanedToLimit : amount}});
     }
-
-    res.status(200).json({ success: true });
-  } catch (err) {
-    res.status(500).json({ message: err.message, success: false });
   }
 };

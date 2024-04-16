@@ -10,7 +10,7 @@ import { useState } from "react";
 const DashBoard = () => {
   const [open, setOpen] = useState(false);
   return (
-    <div className="px-7 py-4">
+    <div className="px-8 py-4">
       <Drawer anchor="top" open={open} onClose={() => setOpen(false)}>
         <div className="bg-[#19264d] p-8">
           <div className="flex w-full justify-around">

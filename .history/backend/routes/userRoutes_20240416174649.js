@@ -13,5 +13,5 @@ router.post(
 router.get("/:userId", UserController.getUserById);
 router.post("/login", authController.login);
 router.post("/addExpense/:id", UserController.addExpense);
-router.patch("/setLimit/:id", UserController.setLimit);
+router.patch("/setLimit", UserController.setLimit);
 module.exports = router;

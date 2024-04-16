@@ -1,7 +1,7 @@
 import { Button, Input } from "@mui/material";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setLimit } from "../../store/store";
+import { setLimit, userActions } from "../../store/store";
 
 // eslint-disable-next-line react/prop-types
 const LimitTaker = ({ label }) => {
@@ -32,7 +32,7 @@ const LimitTaker = ({ label }) => {
       limitType = "loaned to";
     }
 
-    dispatch(setLimit(inputRef.current.value, limitType, id));
+    dispatch(setLimit(inputRef.current.value, limitType));
   };
   return (
     <form onSubmit={submitHandler} className="flex flex-col gap-4 items-center">
