@@ -21,6 +21,12 @@ const userSlice = createSlice({
         state.loanedFromLimit = action.payload.amount;
       }
     },
+
+    deleteNotification(state, action) {
+      state.activeNotifications = state.activeNotifications.filter(
+        (notification) => notification.id !== action.payload
+      );
+    },
   },
 });
 
@@ -48,6 +54,19 @@ export const setLimit = (amount, type, id) => {
 
     if (response.data.success) {
       dispatch(userActions.setLimit({ limitType: type, amount }));
+    }
+  };
+};
+
+export const deleteNotification = (id, userId) => {
+  return async (dispatch) => {
+    const response = await apiConnector(
+      "delete",
+      `http://localhost:8000/message/${userId}?id=${id}`
+    );
+
+    if (response.data.success) {
+      dispatch(userActions.deleteNotification(id));
     }
   };
 };

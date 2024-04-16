@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { IoIosNotifications } from "react-icons/io";
 import { FaSearch } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";
@@ -8,8 +9,9 @@ import { Button } from "@mui/material";
 import { useState } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-import { useSelector } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
+import { RxCrossCircled } from "react-icons/rx";
+import { deleteNotification } from "../../store/store";
 const style = {
   position: "absolute",
   top: "50%",
@@ -18,7 +20,7 @@ const style = {
   width: 600,
   bgcolor: "#1e2d58",
   borderRadius: "14px",
-
+  outline: "none",
   boxShadow: 24,
   p: 4,
 };
@@ -31,7 +33,7 @@ const DashBoard = () => {
       return [];
     }
 
-    return state.notifications;
+    return state.activeNotifications;
   });
   return (
     <div className="px-7 py-4">
@@ -47,6 +49,11 @@ const DashBoard = () => {
               No notifications to display
             </h2>
           )}
+
+          {notifications.length > 0 &&
+            notifications.map((item) => (
+              <NotificationItem {...item} key={item.id} />
+            ))}
         </Box>
       </Modal>
       <Drawer anchor="top" open={open} onClose={() => setOpen(false)}>
@@ -94,6 +101,23 @@ const DashBoard = () => {
         </div>
       </div>
       <MainContent />
+    </div>
+  );
+};
+
+const NotificationItem = ({ message, id }) => {
+  const userId = useSelector((state) => state._id);
+  const dispatch = useDispatch();
+  const handlerClick = () => {
+    dispatch(deleteNotification(id, userId));
+  };
+  return (
+    <div className="w-full flex items-center justify-between text-[1.4rem]">
+      <p className=" text-white">{message}</p>
+      <RxCrossCircled
+        onClick={handlerClick}
+        className="text-[2rem] text-red-500 cursor-pointer font-extrabold hover:scale-110 transition-all duration-150"
+      />
     </div>
   );
 };
