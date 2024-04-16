@@ -169,7 +169,7 @@ const MainContent = () => {
       delete data.category;
     }
 
-    setForm({ title: "", amount: 0, date: dayjs("") });
+    setForm({ title: "", amount: 0 });
     setCategory("");
     setSubCategory("");
     setType("");
