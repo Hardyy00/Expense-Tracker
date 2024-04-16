@@ -180,8 +180,21 @@ const MainContent = () => {
     dispatch(addExpense(data, id));
   };
 
+  // if (spent >= spentLimit) {
+  //   notificationHandler("spent");
+  // }
+
+  // if (loanedFrom >= loanedFromLimit) {
+  //   notificationHandler("loaned from");
+  // }
+
+  if (loanedTo >= loanedToLimit) {
+    notificationHandler("loaned to");
+  }
+
   const notificationHandler = (type) => {
     let searchMessage = "";
+
     if (type === "spent") {
       searchMessage = "You have spent more than your spending limit";
     } else if (type === "loaned to") {
@@ -191,25 +204,15 @@ const MainContent = () => {
       searchMessage =
         "You have taken loan from others more than your 'loan from limit' ";
     }
+
     for (const item of notifications) {
       if (item.message === searchMessage) {
         return;
       }
+
+      dispatch(addNotification({ message: searchMessage, id: uuid() }));
     }
-    dispatch(addNotification({ message: searchMessage, id: uuid() }, id));
   };
-
-  if (spent >= spentLimit) {
-    notificationHandler("spent");
-  }
-
-  if (loanedFrom >= loanedFromLimit) {
-    notificationHandler("loaned from");
-  }
-
-  if (loanedTo >= loanedToLimit) {
-    notificationHandler("loaned to");
-  }
 
   return (
     <div className="w-full h-full mt-8 flex flex-col gap-[4rem] ">

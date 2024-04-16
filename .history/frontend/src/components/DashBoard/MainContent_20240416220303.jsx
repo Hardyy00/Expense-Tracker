@@ -180,36 +180,39 @@ const MainContent = () => {
     dispatch(addExpense(data, id));
   };
 
-  const notificationHandler = (type) => {
-    let searchMessage = "";
-    if (type === "spent") {
-      searchMessage = "You have spent more than your spending limit";
-    } else if (type === "loaned to") {
-      searchMessage =
-        "You have loaned to others more than your 'loan to limit' ";
-    } else {
-      searchMessage =
-        "You have taken loan from others more than your 'loan from limit' ";
-    }
-    for (const item of notifications) {
-      if (item.message === searchMessage) {
-        return;
-      }
-    }
-    dispatch(addNotification({ message: searchMessage, id: uuid() }, id));
-  };
+  // if (spent >= spentLimit) {
+  //   notificationHandler("spent");
+  // }
 
-  if (spent >= spentLimit) {
-    notificationHandler("spent");
-  }
-
-  if (loanedFrom >= loanedFromLimit) {
-    notificationHandler("loaned from");
-  }
+  // if (loanedFrom >= loanedFromLimit) {
+  //   notificationHandler("loaned from");
+  // }
 
   if (loanedTo >= loanedToLimit) {
     notificationHandler("loaned to");
   }
+
+  // const notificationHandler = (type) => {
+  //   let searchMessage = "";
+
+  //   if (type === "spent") {
+  //     searchMessage = "You have spent more than your spending limit";
+  //   } else if (type === "loaned to") {
+  //     searchMessage =
+  //       "You have loaned to others more than your 'loan to limit' ";
+  //   } else {
+  //     searchMessage =
+  //       "You have taken loan from others more than your 'loan from limit' ";
+  //   }
+
+  //   for (const item of notifications) {
+  //     if (item.message === searchMessage) {
+  //       return;
+  //     }
+
+  //     dispatch(addNotification({ message: searchMessage, id: "45" }, id));
+  //   }
+  // };
 
   return (
     <div className="w-full h-full mt-8 flex flex-col gap-[4rem] ">

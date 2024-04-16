@@ -1,5 +1,6 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 import { apiConnector } from "../Operations/apiConnector";
+import { StaticDateTimePicker } from "@mui/x-date-pickers";
 
 const userSlice = createSlice({
   name: "User",
@@ -74,7 +75,7 @@ export const addNotification = (obj, userId) => {
     );
 
     if (response.data.success) {
-      dispatch(userActions.addNotification(obj));
+      dispatch(userActions.addNotification(response.data.message));
     }
   };
 };

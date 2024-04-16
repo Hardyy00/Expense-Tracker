@@ -118,12 +118,6 @@ exports.addMessage = async (req, res) => {
   try {
     const user = await User.findById(userId);
 
-    for (const item of user.activeNotifications) {
-      if (item.message === message) {
-        return res.status(400).json({ success: false });
-      }
-    }
-
     await user.updateOne({ $push: { activeNotifications: { message, id } } });
 
     res.status(200).json({ success: true });

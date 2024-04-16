@@ -22,13 +22,6 @@ const userSlice = createSlice({
       }
     },
 
-    addNotification(state, action) {
-      state.activeNotifications = [
-        ...state.activeNotifications,
-        action.payload,
-      ];
-    },
-
     deleteNotification(state, action) {
       state.activeNotifications = state.activeNotifications.filter(
         (notification) => notification.id !== action.payload
@@ -65,17 +58,12 @@ export const setLimit = (amount, type, id) => {
   };
 };
 
-export const addNotification = (obj, userId) => {
+export const addNotification = (obj) => {
   return async (dispatch) => {
     const response = await apiConnector(
       "post",
-      `http://localhost:8000/message/${userId}`,
-      obj
+      "http://localhost:8000/addNotification"
     );
-
-    if (response.data.success) {
-      dispatch(userActions.addNotification(obj));
-    }
   };
 };
 export const deleteNotification = (id, userId) => {

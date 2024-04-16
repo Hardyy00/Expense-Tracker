@@ -14,6 +14,5 @@ router.get("/:userId", UserController.getUserById);
 router.post("/login", authController.login);
 router.post("/addExpense/:id", UserController.addExpense);
 router.patch("/setLimit/:id", UserController.setLimit);
-router.post("/message/:userId", UserController.addMessage);
-router.delete("/message/:userId", UserController.deleteMessage);
+router.post("/message/:id", UserController.addMessage);
 module.exports = router;

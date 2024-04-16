@@ -180,36 +180,39 @@ const MainContent = () => {
     dispatch(addExpense(data, id));
   };
 
-  const notificationHandler = (type) => {
-    let searchMessage = "";
-    if (type === "spent") {
-      searchMessage = "You have spent more than your spending limit";
-    } else if (type === "loaned to") {
-      searchMessage =
-        "You have loaned to others more than your 'loan to limit' ";
-    } else {
-      searchMessage =
-        "You have taken loan from others more than your 'loan from limit' ";
-    }
-    for (const item of notifications) {
-      if (item.message === searchMessage) {
-        return;
-      }
-    }
-    dispatch(addNotification({ message: searchMessage, id: uuid() }, id));
-  };
+  // if (spent >= spentLimit) {
+  //   notificationHandler("spent");
+  // }
 
-  if (spent >= spentLimit) {
-    notificationHandler("spent");
-  }
+  // if (loanedFrom >= loanedFromLimit) {
+  //   notificationHandler("loaned from");
+  // }
 
-  if (loanedFrom >= loanedFromLimit) {
-    notificationHandler("loaned from");
-  }
+  // if (loanedTo >= loanedToLimit) {
+  //   notificationHandler("loaned to");
+  // }
 
-  if (loanedTo >= loanedToLimit) {
-    notificationHandler("loaned to");
-  }
+  // const notificationHandler = (type) => {
+  //   let searchMessage = "";
+
+  //   if (type === "spent") {
+  //     searchMessage = "You have spent more than your spending limit";
+  //   } else if (type === "loaned to") {
+  //     searchMessage =
+  //       "You have loaned to others more than your 'loan to limit' ";
+  //   } else {
+  //     searchMessage =
+  //       "You have taken loan from others more than your 'loan from limit' ";
+  //   }
+
+  //   for (const item of notifications) {
+  //     if (item.message === searchMessage) {
+  //       return;
+  //     }
+
+  //     dispatch(addNotification({ message: searchMessage, id: uuid() }));
+  //   }
+  // };
 
   return (
     <div className="w-full h-full mt-8 flex flex-col gap-[4rem] ">
@@ -321,7 +324,7 @@ const MainContent = () => {
                 {spentLimit > 0 && (
                   <div className="flex flex-col items-center gap-4">
                     <Progress.Circle
-                      percent={+((spent * 100.0) / spentLimit).toFixed(2)}
+                      percent={((spent * 100.0) / spentLimit).toFixed(2)}
                       status={
                         ((spent * 100.0) / spentLimit).toFixed(2) < 100
                           ? "active"
@@ -343,9 +346,9 @@ const MainContent = () => {
                 {loanedFromLimit > 0 && (
                   <div className="flex flex-col items-center gap-4">
                     <Progress.Circle
-                      percent={
-                        +((loanedFrom * 100.0) / loanedFromLimit).toFixed(2)
-                      }
+                      percent={((loanedFrom * 100.0) / loanedFromLimit).toFixed(
+                        2
+                      )}
                       status={
                         ((loanedFrom * 100.0) / loanedFromLimit).toFixed(2) <
                         100
@@ -368,7 +371,7 @@ const MainContent = () => {
                 {loanedToLimit > 0 && (
                   <div className="flex flex-col items-center gap-4">
                     <Progress.Circle
-                      percent={+((loanedTo * 100.0) / loanedToLimit).toFixed(2)}
+                      percent={((loanedTo * 100.0) / loanedToLimit).toFixed(2)}
                       status={
                         ((loanedTo * 100.0) / loanedToLimit).toFixed(2) < 100
                           ? "active"
