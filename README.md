@@ -20,8 +20,8 @@ The Personal Finance Management Application is a web-based tool designed to help
 
 1. **Clone the Repository**: `git clone https://github.com/yourusername/expense-tracker.git`
 2. **Install Dependencies**: `npm install`
-3. **Run the Application**: `npm start`
-4. **Access the Application**: Open your web browser and navigate to `http://localhost:3000`
+3. **Run the Application**: `npm run dev`
+4. **Access the Application**: Open your web browser and navigate to `http://localhost:5173`
 
 ## Deployment
 
