@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { IoIosNotifications } from "react-icons/io";
 import { FaSearch } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";
@@ -9,9 +8,8 @@ import { Button } from "@mui/material";
 import { useState } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-import { useDispatch, useSelector } from "react-redux";
-import { RxCrossCircled } from "react-icons/rx";
-import { deleteNotification } from "../../store/store";
+import { useSelector } from "react-redux";
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -29,13 +27,12 @@ const DashBoard = () => {
   const [openModal, setOpenModal] = useState(false);
 
   const notifications = useSelector((state) => {
-    if (!state || !state.notifications) {
+    if (!state) {
       return [];
     }
 
     return state.activeNotifications;
   });
-
   return (
     <div className="px-7 py-4">
       <Modal
@@ -52,9 +49,7 @@ const DashBoard = () => {
           )}
 
           {notifications.length > 0 &&
-            notifications.map((item) => (
-              <NotificationItem {...item} key={item.id} />
-            ))}
+            notifications.map((item) => <p key={item.id}>{item.message}</p>)}
         </Box>
       </Modal>
       <Drawer anchor="top" open={open} onClose={() => setOpen(false)}>
@@ -107,20 +102,7 @@ const DashBoard = () => {
 };
 
 const NotificationItem = ({ message, id }) => {
-  const userId = useSelector((state) => state._id);
-  const dispatch = useDispatch();
-  const handlerClick = () => {
-    dispatch(deleteNotification(id, userId));
-  };
-  return (
-    <div className="w-full flex items-center justify-between text-[1.4rem]">
-      <p className=" text-white">{message}</p>
-      <RxCrossCircled
-        onClick={handlerClick}
-        className="text-[2rem] text-red-500 cursor-pointer font-extrabold hover:scale-110 transition-all duration-150"
-      />
-    </div>
-  );
+  return <p>{message}</p>;
 };
 
 export default DashBoard;

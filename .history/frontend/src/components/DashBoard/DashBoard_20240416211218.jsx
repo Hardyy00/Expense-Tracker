@@ -9,9 +9,8 @@ import { Button } from "@mui/material";
 import { useState } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RxCrossCircled } from "react-icons/rx";
-import { deleteNotification } from "../../store/store";
 const style = {
   position: "absolute",
   top: "50%",
@@ -29,13 +28,12 @@ const DashBoard = () => {
   const [openModal, setOpenModal] = useState(false);
 
   const notifications = useSelector((state) => {
-    if (!state || !state.notifications) {
+    if (!state) {
       return [];
     }
 
     return state.activeNotifications;
   });
-
   return (
     <div className="px-7 py-4">
       <Modal
@@ -107,11 +105,7 @@ const DashBoard = () => {
 };
 
 const NotificationItem = ({ message, id }) => {
-  const userId = useSelector((state) => state._id);
-  const dispatch = useDispatch();
-  const handlerClick = () => {
-    dispatch(deleteNotification(id, userId));
-  };
+  const handlerClick = () => {};
   return (
     <div className="w-full flex items-center justify-between text-[1.4rem]">
       <p className=" text-white">{message}</p>

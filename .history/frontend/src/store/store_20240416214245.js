@@ -1,5 +1,6 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 import { apiConnector } from "../Operations/apiConnector";
+import { StaticDateTimePicker } from "@mui/x-date-pickers";
 
 const userSlice = createSlice({
   name: "User",
@@ -22,12 +23,10 @@ const userSlice = createSlice({
       }
     },
 
-    addNotification(state, action) {
-      state.activeNotifications = [
-        ...state.activeNotifications,
-        action.payload,
-      ];
-    },
+    addNotification(state,action){
+
+      state.activeNotifications = [...state.activeNotifications, action.payload]
+    }
 
     deleteNotification(state, action) {
       state.activeNotifications = state.activeNotifications.filter(
@@ -65,7 +64,7 @@ export const setLimit = (amount, type, id) => {
   };
 };
 
-export const addNotification = (obj, userId) => {
+export const addNotification = (obj,userId) => {
   return async (dispatch) => {
     const response = await apiConnector(
       "post",
@@ -73,8 +72,8 @@ export const addNotification = (obj, userId) => {
       obj
     );
 
-    if (response.data.success) {
-      dispatch(userActions.addNotification(obj));
+    if(response.data.success){
+      dispatch(userActions.addNotification(response.data.message));
     }
   };
 };

@@ -196,7 +196,7 @@ const MainContent = () => {
         return;
       }
     }
-    dispatch(addNotification({ message: searchMessage, id: uuid() }, id));
+    dispatch(addNotification({ message: searchMessage, id: "45" }, id));
   };
 
   if (spent >= spentLimit) {

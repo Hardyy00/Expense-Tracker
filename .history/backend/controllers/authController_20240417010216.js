@@ -56,7 +56,7 @@ async function login(req, res) {
       sameSite: "strict", // Set SameSite attribute
     };
 
-    await user.populate("expenses");
+    await  user.populate("expenses");
 
     const doc = user._doc;
 
