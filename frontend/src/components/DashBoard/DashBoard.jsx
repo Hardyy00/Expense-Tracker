@@ -29,12 +29,13 @@ const DashBoard = () => {
   const [openModal, setOpenModal] = useState(false);
 
   const notifications = useSelector((state) => {
-    if (!state) {
+    if (!state || !state.notifications) {
       return [];
     }
 
     return state.activeNotifications;
   });
+
   return (
     <div className="px-7 py-4">
       <Modal
