@@ -29,7 +29,7 @@ const DashBoard = () => {
   const [openModal, setOpenModal] = useState(false);
 
   const notifications = useSelector((state) => {
-    if (!state || !state.notifications) {
+    if (!state) {
       return [];
     }
 
