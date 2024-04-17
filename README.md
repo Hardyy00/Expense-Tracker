@@ -34,7 +34,7 @@ To run this project locally, follow these steps:
 - View reports and insights into your spending habits.
 - Customize settings and preferences as needed.
 
-## Folder Structure
+
 ## Server Dependencies
 
 ```json
