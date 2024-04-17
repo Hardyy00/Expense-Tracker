@@ -40,6 +40,40 @@ The application can be deployed on a cloud platform such as Vercel, Netlify, or 
 - UI/UX design and usability.
 - Implementation of language and OpenAI features.
 
+## UserModel
+| Field              | Type                           | Default     | Required | Description                                 |
+|--------------------|--------------------------------|-------------|----------|---------------------------------------------|
+| password           | String                         |             | true     | User's password                             |
+| name               | String                         |             | true     | User's name                                 |
+| age                | Number                         |             | true     | User's age                                  |
+| gender             | String                         |             | true     | User's gender                               |
+| profilePhoto       | String                         |             |          | URL of user's profile photo                 |
+| email              | String                         |             | true     | User's email                                |
+| userId             | String                         |             |          | User ID                                     |
+| username           | String                         |             |          | User's username                             |
+| phone              | String                         |             |          | User's phone number                         |
+| profession         | String                         | "Other"     |          | User's profession                           |
+| annualIncome       | Number                         |             | true     | User's annual income                        |
+| expenses           | Array of mongoose ObjectIds    |             |          | Expenses associated with the user          |
+| spentLimit         | Number                         | 1000        |          | User's spending limit                      |
+| loanedFromLimit    | Number                         | 1000        |          | User's limit for loans given to others     |
+| loanedToLimit      | Number                         | 1000        |          | User's limit for loans received from others|
+| activeNotifications| Array                          |             |          | Active notifications for the user          |
+| timestamps         | Boolean                        | true        |          | Automatically generated timestamps         |
+
+## ExpenseModel
+| Field        | Type                           | Default | Required | Description                                   |
+|--------------|--------------------------------|---------|----------|-----------------------------------------------|
+| userId       | ObjectId (Reference to User)   |         | true     | ID of the user associated with the expense    |
+| amount       | Number                         |         |          | Amount of the expense                         |
+| date         | String                         |         |          | Date of the expense                           |
+| title        | String                         |         |          | Title of the expense                          |
+| category     | String                         |         |          | Category of the expense                       |
+| subCategory  | String                         |         |          | Subcategory of the expense                    |
+| type         | String (Enum)                  |         |          | Type of expense (Spent, Earned, Loaned, etc.)|
+| friendName   | String                         |         |          | Name of the friend involved in the transaction|
+
+
 ## Contributing
 
 Contributions to the project are welcome! Please follow the [Contribution Guidelines](CONTRIBUTING.md) for more information.
